@@ -16,3 +16,16 @@ C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspectio
 C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.exe
 C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.xml
 C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.pdb
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\GPIB_FTP_ETC.exe
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\GPIB_FTP_ETC.pdb
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\GPIB_FTP_ETC.xml
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\Cognex.InSight.Controls.Display.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\Cognex.InSight.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\Cognex.InSight.xml
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\Cognex.InSight.Controls.Display.xml
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\HEV_Pkg_Inspection_CNTRL.vbprojResolveAssemblyReference.cache
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.AboutBox1.resources
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.MainForm.resources
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.formSTATION_1A.resources
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.Resources.resources
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\HEV_Pkg_Inspection_CNTRL.vbproj.GenerateResource.Cache

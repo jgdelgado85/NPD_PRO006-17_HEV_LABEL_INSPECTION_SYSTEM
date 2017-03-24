@@ -763,7 +763,7 @@ Public Class MainForm
     End Sub
 
     Private Sub btnMODBUS_TCP_Refresh_Click(sender As Object, e As EventArgs) Handles btnModbusTCP_Refresh.Click
-        Dim HRegister01 As Integer()
+        Dim HRegister01 As Integer()    'Hold the HR Register
         Dim XCoils(15) As Boolean
         Dim YCoils(15) As Boolean
 
