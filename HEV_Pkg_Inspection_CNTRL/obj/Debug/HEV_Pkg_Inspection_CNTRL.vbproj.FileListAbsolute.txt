@@ -7,3 +7,12 @@ C:\Users\jdelgado2\Documents\VB\GPIB_FTP_ETC\HEV_Pkg_Inspection_CNTRL\obj\Debug\
 C:\Users\jdelgado2\Documents\VB\GPIB_FTP_ETC\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.exe
 C:\Users\jdelgado2\Documents\VB\GPIB_FTP_ETC\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.xml
 C:\Users\jdelgado2\Documents\VB\GPIB_FTP_ETC\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.pdb
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\GPIB_FTP_ETC.exe.config
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\Interop.CoreScanner.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\Interop.nisysapi.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\Interop.OposScanner_CCO.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\Interop.ZebraScannerSO.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\HEV_Pkg_Inspection_CNTRL.vbproj.ResolveComReference.cache
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.exe
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.xml
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.pdb

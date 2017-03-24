@@ -1748,7 +1748,7 @@ Partial Class MainForm
         Me.grpbxMODBUS_TCP.Controls.Add(Me.Label37)
         Me.grpbxMODBUS_TCP.Controls.Add(Me.Label36)
         Me.grpbxMODBUS_TCP.Controls.Add(Me.txtbMODBUS_TCP_IP_Address)
-        Me.grpbxMODBUS_TCP.Location = New System.Drawing.Point(478, 354)
+        Me.grpbxMODBUS_TCP.Location = New System.Drawing.Point(472, 354)
         Me.grpbxMODBUS_TCP.Name = "grpbxMODBUS_TCP"
         Me.grpbxMODBUS_TCP.Size = New System.Drawing.Size(150, 300)
         Me.grpbxMODBUS_TCP.TabIndex = 64
