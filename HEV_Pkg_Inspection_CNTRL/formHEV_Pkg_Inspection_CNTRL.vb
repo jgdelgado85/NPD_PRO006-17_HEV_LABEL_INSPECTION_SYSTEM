@@ -961,4 +961,12 @@ Public Class MainForm
     Private Sub Label39_Click(sender As Object, e As EventArgs) Handles Label39.Click
 
     End Sub
+
+    Private Sub Label36_Click(sender As Object, e As EventArgs) Handles Label36.Click
+
+    End Sub
+
+    Private Sub Label37_Click(sender As Object, e As EventArgs) Handles Label37.Click
+
+    End Sub
 End Class

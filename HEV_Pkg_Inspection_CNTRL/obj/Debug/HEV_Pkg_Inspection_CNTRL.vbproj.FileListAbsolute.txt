@@ -29,3 +29,9 @@ C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspectio
 C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.formSTATION_1A.resources
 C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\GPIB_FTP_ETC.Resources.resources
 C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\obj\Debug\HEV_Pkg_Inspection_CNTRL.vbproj.GenerateResource.Cache
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\NationalInstruments.Common.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\NationalInstruments.NI4882.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\NationalInstruments.NiLmClientDLL.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\NationalInstruments.MStudioCLM.dll
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\NationalInstruments.Common.xml
+C:\Users\jdelgado2\Documents\GitREPOs\HEV_Pkg_Inspection_CNTRL\HEV_Pkg_Inspection_CNTRL\bin\Debug\NationalInstruments.NI4882.xml

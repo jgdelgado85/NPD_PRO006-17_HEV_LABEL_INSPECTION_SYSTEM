@@ -50,7 +50,6 @@ Partial Class MainForm
         Me.btnCloseBarcodeDeviceST1A = New System.Windows.Forms.Button()
         Me.btnFTPUpJobST1B = New System.Windows.Forms.Button()
         Me.txtbFTPUpJobST1B = New System.Windows.Forms.TextBox()
-        Me.btnFTPdownload = New System.Windows.Forms.Button()
         Me.CvsInSightDisplay1 = New Cognex.InSight.Controls.Display.CvsInSightDisplay()
         Me.btnCONNECTCvsInSightDisplay1 = New System.Windows.Forms.Button()
         Me.txtbADDRESSCvsInSightDisplay1 = New System.Windows.Forms.TextBox()
@@ -77,13 +76,10 @@ Partial Class MainForm
         Me.ABOUTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.grpbxRS232 = New System.Windows.Forms.GroupBox()
         Me.grpbxBarcodeScannerST1A = New System.Windows.Forms.GroupBox()
+        Me.Label40 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.grpbxGPIB_TEGAM = New System.Windows.Forms.GroupBox()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.grpbxP2000 = New System.Windows.Forms.GroupBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.Button6 = New System.Windows.Forms.Button()
         Me.grpbxCVSInsight_ST1B = New System.Windows.Forms.GroupBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -161,6 +157,7 @@ Partial Class MainForm
         Me.Label30 = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label41 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.btnOpenBarcodeDeviceST3A = New System.Windows.Forms.Button()
         Me.txtbBCDevice_ReadST3A = New System.Windows.Forms.TextBox()
@@ -212,11 +209,11 @@ Partial Class MainForm
         Me.Label36 = New System.Windows.Forms.Label()
         Me.txtbMODBUS_TCP_IP_Address = New System.Windows.Forms.TextBox()
         Me.timerModbusTCP1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label42 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.grpbxRS232.SuspendLayout()
         Me.grpbxBarcodeScannerST1A.SuspendLayout()
         Me.grpbxGPIB_TEGAM.SuspendLayout()
-        Me.grpbxP2000.SuspendLayout()
         Me.grpbxCVSInsight_ST1B.SuspendLayout()
         Me.grpbxCVSInsight_ST2A.SuspendLayout()
         Me.grpbxCVSInsight_ST3A.SuspendLayout()
@@ -228,60 +225,60 @@ Partial Class MainForm
         '
         'btnOPEN
         '
-        Me.btnOPEN.Location = New System.Drawing.Point(14, 118)
+        Me.btnOPEN.Location = New System.Drawing.Point(5, 70)
         Me.btnOPEN.Name = "btnOPEN"
-        Me.btnOPEN.Size = New System.Drawing.Size(120, 25)
+        Me.btnOPEN.Size = New System.Drawing.Size(45, 34)
         Me.btnOPEN.TabIndex = 0
         Me.btnOPEN.Text = "Open GPIB"
         Me.btnOPEN.UseVisualStyleBackColor = True
         '
         'btnCLOSE
         '
-        Me.btnCLOSE.Location = New System.Drawing.Point(14, 293)
+        Me.btnCLOSE.Location = New System.Drawing.Point(101, 70)
         Me.btnCLOSE.Name = "btnCLOSE"
-        Me.btnCLOSE.Size = New System.Drawing.Size(120, 25)
+        Me.btnCLOSE.Size = New System.Drawing.Size(45, 34)
         Me.btnCLOSE.TabIndex = 1
         Me.btnCLOSE.Text = "Close GPIB"
         Me.btnCLOSE.UseVisualStyleBackColor = True
         '
         'cbPrimaryAddress
         '
-        Me.cbPrimaryAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbPrimaryAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbPrimaryAddress.FormattingEnabled = True
         Me.cbPrimaryAddress.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"})
-        Me.cbPrimaryAddress.Location = New System.Drawing.Point(86, 57)
+        Me.cbPrimaryAddress.Location = New System.Drawing.Point(54, 47)
         Me.cbPrimaryAddress.Name = "cbPrimaryAddress"
-        Me.cbPrimaryAddress.Size = New System.Drawing.Size(42, 24)
+        Me.cbPrimaryAddress.Size = New System.Drawing.Size(42, 21)
         Me.cbPrimaryAddress.TabIndex = 2
         Me.cbPrimaryAddress.Text = "12"
         '
         'cbSecondaryAddress
         '
         Me.cbSecondaryAddress.Enabled = False
-        Me.cbSecondaryAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSecondaryAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbSecondaryAddress.FormattingEnabled = True
         Me.cbSecondaryAddress.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"})
-        Me.cbSecondaryAddress.Location = New System.Drawing.Point(85, 85)
+        Me.cbSecondaryAddress.Location = New System.Drawing.Point(104, 47)
         Me.cbSecondaryAddress.Name = "cbSecondaryAddress"
-        Me.cbSecondaryAddress.Size = New System.Drawing.Size(42, 24)
+        Me.cbSecondaryAddress.Size = New System.Drawing.Size(42, 21)
         Me.cbSecondaryAddress.TabIndex = 3
         Me.cbSecondaryAddress.Text = "0"
         '
         'cbBoardID
         '
-        Me.cbBoardID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbBoardID.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbBoardID.FormattingEnabled = True
         Me.cbBoardID.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"})
-        Me.cbBoardID.Location = New System.Drawing.Point(86, 29)
+        Me.cbBoardID.Location = New System.Drawing.Point(6, 47)
         Me.cbBoardID.Name = "cbBoardID"
-        Me.cbBoardID.Size = New System.Drawing.Size(42, 24)
+        Me.cbBoardID.Size = New System.Drawing.Size(41, 21)
         Me.cbBoardID.TabIndex = 4
         Me.cbBoardID.Text = "0"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(28, 37)
+        Me.Label1.Location = New System.Drawing.Point(2, 30)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(52, 13)
         Me.Label1.TabIndex = 5
@@ -290,63 +287,63 @@ Partial Class MainForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 62)
+        Me.Label2.Location = New System.Drawing.Point(51, 30)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(74, 13)
+        Me.Label2.Size = New System.Drawing.Size(42, 13)
         Me.Label2.TabIndex = 6
-        Me.Label2.Text = "Prim. Address:"
+        Me.Label2.Text = "Pr.Add:"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 87)
+        Me.Label3.Location = New System.Drawing.Point(96, 30)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 13)
+        Me.Label3.Size = New System.Drawing.Size(51, 13)
         Me.Label3.TabIndex = 7
-        Me.Label3.Text = "Sec. Address:"
+        Me.Label3.Text = "Sec.Add:"
         '
         'btnREAD
         '
-        Me.btnREAD.Location = New System.Drawing.Point(14, 241)
+        Me.btnREAD.Location = New System.Drawing.Point(101, 151)
         Me.btnREAD.Name = "btnREAD"
-        Me.btnREAD.Size = New System.Drawing.Size(120, 25)
+        Me.btnREAD.Size = New System.Drawing.Size(45, 20)
         Me.btnREAD.TabIndex = 8
-        Me.btnREAD.Text = "Read GPIB"
+        Me.btnREAD.Text = "Read"
         Me.btnREAD.UseVisualStyleBackColor = True
         '
         'txtbReadGPIB
         '
-        Me.txtbReadGPIB.Location = New System.Drawing.Point(14, 270)
+        Me.txtbReadGPIB.Location = New System.Drawing.Point(3, 152)
         Me.txtbReadGPIB.Name = "txtbReadGPIB"
         Me.txtbReadGPIB.ReadOnly = True
-        Me.txtbReadGPIB.Size = New System.Drawing.Size(120, 20)
+        Me.txtbReadGPIB.Size = New System.Drawing.Size(92, 20)
         Me.txtbReadGPIB.TabIndex = 9
         '
         'txtbWriteGPIB
         '
-        Me.txtbWriteGPIB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbWriteGPIB.Location = New System.Drawing.Point(14, 179)
+        Me.txtbWriteGPIB.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtbWriteGPIB.Location = New System.Drawing.Point(4, 126)
         Me.txtbWriteGPIB.Name = "txtbWriteGPIB"
-        Me.txtbWriteGPIB.Size = New System.Drawing.Size(52, 22)
+        Me.txtbWriteGPIB.Size = New System.Drawing.Size(45, 20)
         Me.txtbWriteGPIB.TabIndex = 10
         Me.txtbWriteGPIB.Text = "Q1X"
         '
         'btnWRITE
         '
-        Me.btnWRITE.Location = New System.Drawing.Point(72, 179)
+        Me.btnWRITE.Location = New System.Drawing.Point(52, 124)
         Me.btnWRITE.Name = "btnWRITE"
-        Me.btnWRITE.Size = New System.Drawing.Size(62, 25)
+        Me.btnWRITE.Size = New System.Drawing.Size(45, 22)
         Me.btnWRITE.TabIndex = 11
         Me.btnWRITE.Text = "Write"
         Me.btnWRITE.UseVisualStyleBackColor = True
         '
         'btnTERMINATE
         '
-        Me.btnTERMINATE.Location = New System.Drawing.Point(14, 148)
+        Me.btnTERMINATE.Location = New System.Drawing.Point(52, 70)
         Me.btnTERMINATE.Name = "btnTERMINATE"
-        Me.btnTERMINATE.Size = New System.Drawing.Size(120, 25)
+        Me.btnTERMINATE.Size = New System.Drawing.Size(45, 34)
         Me.btnTERMINATE.TabIndex = 12
-        Me.btnTERMINATE.Text = "Terminate Asynch. GPIB"
+        Me.btnTERMINATE.Text = "Term. Asynch. "
         Me.btnTERMINATE.UseVisualStyleBackColor = True
         '
         'btnRS232Test
@@ -364,85 +361,85 @@ Partial Class MainForm
         '
         'btnTRIGGER
         '
-        Me.btnTRIGGER.Location = New System.Drawing.Point(14, 210)
+        Me.btnTRIGGER.Location = New System.Drawing.Point(101, 124)
         Me.btnTRIGGER.Name = "btnTRIGGER"
-        Me.btnTRIGGER.Size = New System.Drawing.Size(120, 25)
+        Me.btnTRIGGER.Size = New System.Drawing.Size(45, 22)
         Me.btnTRIGGER.TabIndex = 14
-        Me.btnTRIGGER.Text = "Send Trigger"
+        Me.btnTRIGGER.Text = "Trig."
         Me.btnTRIGGER.UseVisualStyleBackColor = True
         '
         'btnOpenBarcodeDeviceST1A
         '
-        Me.btnOpenBarcodeDeviceST1A.Location = New System.Drawing.Point(12, 40)
+        Me.btnOpenBarcodeDeviceST1A.Location = New System.Drawing.Point(4, 40)
         Me.btnOpenBarcodeDeviceST1A.Name = "btnOpenBarcodeDeviceST1A"
-        Me.btnOpenBarcodeDeviceST1A.Size = New System.Drawing.Size(125, 25)
+        Me.btnOpenBarcodeDeviceST1A.Size = New System.Drawing.Size(45, 34)
         Me.btnOpenBarcodeDeviceST1A.TabIndex = 15
-        Me.btnOpenBarcodeDeviceST1A.Text = "Open Barcode Device"
+        Me.btnOpenBarcodeDeviceST1A.Text = "Open"
         Me.btnOpenBarcodeDeviceST1A.UseVisualStyleBackColor = True
         '
         'txtbBCDevice_ReadST1A
         '
         Me.txtbBCDevice_ReadST1A.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbBCDevice_ReadST1A.Location = New System.Drawing.Point(12, 225)
+        Me.txtbBCDevice_ReadST1A.Location = New System.Drawing.Point(4, 149)
         Me.txtbBCDevice_ReadST1A.Multiline = True
         Me.txtbBCDevice_ReadST1A.Name = "txtbBCDevice_ReadST1A"
         Me.txtbBCDevice_ReadST1A.ReadOnly = True
-        Me.txtbBCDevice_ReadST1A.Size = New System.Drawing.Size(125, 25)
+        Me.txtbBCDevice_ReadST1A.Size = New System.Drawing.Size(140, 25)
         Me.txtbBCDevice_ReadST1A.TabIndex = 16
         Me.txtbBCDevice_ReadST1A.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'btnBCDevice_LEDsOFFST1A
         '
-        Me.btnBCDevice_LEDsOFFST1A.Location = New System.Drawing.Point(12, 163)
+        Me.btnBCDevice_LEDsOFFST1A.Location = New System.Drawing.Point(100, 109)
         Me.btnBCDevice_LEDsOFFST1A.Name = "btnBCDevice_LEDsOFFST1A"
-        Me.btnBCDevice_LEDsOFFST1A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDevice_LEDsOFFST1A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDevice_LEDsOFFST1A.TabIndex = 17
-        Me.btnBCDevice_LEDsOFFST1A.Text = "LEDs OFF"
+        Me.btnBCDevice_LEDsOFFST1A.Text = "ALL OFF"
         Me.btnBCDevice_LEDsOFFST1A.UseVisualStyleBackColor = True
         '
         'btnBCDevice_LEDGreenONST1A
         '
-        Me.btnBCDevice_LEDGreenONST1A.Location = New System.Drawing.Point(12, 100)
+        Me.btnBCDevice_LEDGreenONST1A.Location = New System.Drawing.Point(4, 109)
         Me.btnBCDevice_LEDGreenONST1A.Name = "btnBCDevice_LEDGreenONST1A"
-        Me.btnBCDevice_LEDGreenONST1A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDevice_LEDGreenONST1A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDevice_LEDGreenONST1A.TabIndex = 18
-        Me.btnBCDevice_LEDGreenONST1A.Text = "LED GREEN ON"
+        Me.btnBCDevice_LEDGreenONST1A.Text = "Green ON"
         Me.btnBCDevice_LEDGreenONST1A.UseVisualStyleBackColor = True
         '
         'btnBCDevice_LEDRedONST1A
         '
-        Me.btnBCDevice_LEDRedONST1A.Location = New System.Drawing.Point(12, 132)
+        Me.btnBCDevice_LEDRedONST1A.Location = New System.Drawing.Point(52, 109)
         Me.btnBCDevice_LEDRedONST1A.Name = "btnBCDevice_LEDRedONST1A"
-        Me.btnBCDevice_LEDRedONST1A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDevice_LEDRedONST1A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDevice_LEDRedONST1A.TabIndex = 19
-        Me.btnBCDevice_LEDRedONST1A.Text = "LED RED ON"
+        Me.btnBCDevice_LEDRedONST1A.Text = "Red ON"
         Me.btnBCDevice_LEDRedONST1A.UseVisualStyleBackColor = True
         '
         'btnBCDevice_BeepST1A
         '
-        Me.btnBCDevice_BeepST1A.Location = New System.Drawing.Point(12, 194)
+        Me.btnBCDevice_BeepST1A.Location = New System.Drawing.Point(100, 84)
         Me.btnBCDevice_BeepST1A.Name = "btnBCDevice_BeepST1A"
-        Me.btnBCDevice_BeepST1A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDevice_BeepST1A.Size = New System.Drawing.Size(45, 19)
         Me.btnBCDevice_BeepST1A.TabIndex = 21
         Me.btnBCDevice_BeepST1A.Text = "BEEP"
         Me.btnBCDevice_BeepST1A.UseVisualStyleBackColor = True
         '
         'btnBCDeviceEventSubscribeST1A
         '
-        Me.btnBCDeviceEventSubscribeST1A.Location = New System.Drawing.Point(12, 70)
+        Me.btnBCDeviceEventSubscribeST1A.Location = New System.Drawing.Point(52, 40)
         Me.btnBCDeviceEventSubscribeST1A.Name = "btnBCDeviceEventSubscribeST1A"
-        Me.btnBCDeviceEventSubscribeST1A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDeviceEventSubscribeST1A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDeviceEventSubscribeST1A.TabIndex = 22
-        Me.btnBCDeviceEventSubscribeST1A.Text = "Event Subscribe"
+        Me.btnBCDeviceEventSubscribeST1A.Text = "Event Subs."
         Me.btnBCDeviceEventSubscribeST1A.UseVisualStyleBackColor = True
         '
         'btnCloseBarcodeDeviceST1A
         '
-        Me.btnCloseBarcodeDeviceST1A.Location = New System.Drawing.Point(13, 256)
+        Me.btnCloseBarcodeDeviceST1A.Location = New System.Drawing.Point(101, 40)
         Me.btnCloseBarcodeDeviceST1A.Name = "btnCloseBarcodeDeviceST1A"
-        Me.btnCloseBarcodeDeviceST1A.Size = New System.Drawing.Size(125, 25)
+        Me.btnCloseBarcodeDeviceST1A.Size = New System.Drawing.Size(45, 34)
         Me.btnCloseBarcodeDeviceST1A.TabIndex = 23
-        Me.btnCloseBarcodeDeviceST1A.Text = "Close Barcode Device"
+        Me.btnCloseBarcodeDeviceST1A.Text = "Close"
         Me.btnCloseBarcodeDeviceST1A.UseVisualStyleBackColor = True
         '
         'btnFTPUpJobST1B
@@ -463,15 +460,6 @@ Partial Class MainForm
         Me.txtbFTPUpJobST1B.Size = New System.Drawing.Size(201, 22)
         Me.txtbFTPUpJobST1B.TabIndex = 29
         Me.txtbFTPUpJobST1B.Text = "..."
-        '
-        'btnFTPdownload
-        '
-        Me.btnFTPdownload.Location = New System.Drawing.Point(50, 84)
-        Me.btnFTPdownload.Name = "btnFTPdownload"
-        Me.btnFTPdownload.Size = New System.Drawing.Size(105, 22)
-        Me.btnFTPdownload.TabIndex = 32
-        Me.btnFTPdownload.Text = "FTP Download"
-        Me.btnFTPdownload.UseVisualStyleBackColor = True
         '
         'CvsInSightDisplay1
         '
@@ -647,7 +635,7 @@ Partial Class MainForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FILEToolStripMenuItem, Me.HELPToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1550, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1300, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -687,7 +675,7 @@ Partial Class MainForm
         '
         Me.grpbxRS232.Controls.Add(Me.btnRS232Test)
         Me.grpbxRS232.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpbxRS232.Location = New System.Drawing.Point(1390, 324)
+        Me.grpbxRS232.Location = New System.Drawing.Point(744, 377)
         Me.grpbxRS232.Name = "grpbxRS232"
         Me.grpbxRS232.Size = New System.Drawing.Size(151, 73)
         Me.grpbxRS232.TabIndex = 54
@@ -696,6 +684,7 @@ Partial Class MainForm
         '
         'grpbxBarcodeScannerST1A
         '
+        Me.grpbxBarcodeScannerST1A.Controls.Add(Me.Label40)
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.Label29)
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnOpenBarcodeDeviceST1A)
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnBCDevice_LEDsOFFST1A)
@@ -706,12 +695,22 @@ Partial Class MainForm
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnBCDeviceEventSubscribeST1A)
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnCloseBarcodeDeviceST1A)
         Me.grpbxBarcodeScannerST1A.Enabled = False
-        Me.grpbxBarcodeScannerST1A.Location = New System.Drawing.Point(316, 29)
+        Me.grpbxBarcodeScannerST1A.Location = New System.Drawing.Point(226, 27)
         Me.grpbxBarcodeScannerST1A.Name = "grpbxBarcodeScannerST1A"
-        Me.grpbxBarcodeScannerST1A.Size = New System.Drawing.Size(150, 292)
+        Me.grpbxBarcodeScannerST1A.Size = New System.Drawing.Size(150, 180)
         Me.grpbxBarcodeScannerST1A.TabIndex = 55
         Me.grpbxBarcodeScannerST1A.TabStop = False
         Me.grpbxBarcodeScannerST1A.Text = "Symbol Barcode ST1A"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label40.Location = New System.Drawing.Point(3, 87)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(95, 13)
+        Me.Label40.TabIndex = 56
+        Me.Label40.Text = "LEDs and Beep"
         '
         'Label29
         '
@@ -725,6 +724,7 @@ Partial Class MainForm
         '
         'grpbxGPIB_TEGAM
         '
+        Me.grpbxGPIB_TEGAM.Controls.Add(Me.Label42)
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.Label28)
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.btnOPEN)
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.btnCLOSE)
@@ -741,9 +741,9 @@ Partial Class MainForm
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.btnTERMINATE)
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.btnTRIGGER)
         Me.grpbxGPIB_TEGAM.Enabled = False
-        Me.grpbxGPIB_TEGAM.Location = New System.Drawing.Point(316, 329)
+        Me.grpbxGPIB_TEGAM.Location = New System.Drawing.Point(226, 208)
         Me.grpbxGPIB_TEGAM.Name = "grpbxGPIB_TEGAM"
-        Me.grpbxGPIB_TEGAM.Size = New System.Drawing.Size(150, 325)
+        Me.grpbxGPIB_TEGAM.Size = New System.Drawing.Size(150, 180)
         Me.grpbxGPIB_TEGAM.TabIndex = 56
         Me.grpbxGPIB_TEGAM.TabStop = False
         Me.grpbxGPIB_TEGAM.Text = "TEGAM 1750 ST1A"
@@ -757,47 +757,6 @@ Partial Class MainForm
         Me.Label28.Size = New System.Drawing.Size(133, 13)
         Me.Label28.TabIndex = 54
         Me.Label28.Text = "Initialize TEGAM 1750"
-        '
-        'grpbxP2000
-        '
-        Me.grpbxP2000.Controls.Add(Me.TextBox4)
-        Me.grpbxP2000.Controls.Add(Me.TextBox5)
-        Me.grpbxP2000.Controls.Add(Me.Button6)
-        Me.grpbxP2000.Controls.Add(Me.btnFTPdownload)
-        Me.grpbxP2000.Location = New System.Drawing.Point(780, 360)
-        Me.grpbxP2000.Name = "grpbxP2000"
-        Me.grpbxP2000.Size = New System.Drawing.Size(597, 150)
-        Me.grpbxP2000.TabIndex = 57
-        Me.grpbxP2000.TabStop = False
-        Me.grpbxP2000.Text = "P2000 PLC I/O"
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(306, 31)
-        Me.TextBox4.Multiline = True
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(249, 38)
-        Me.TextBox4.TabIndex = 36
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.Location = New System.Drawing.Point(9, 21)
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(194, 53)
-        Me.TextBox5.TabIndex = 35
-        Me.TextBox5.Text = "C:\Users\jdelgado2\Documents\COGNEX\HEV20A.job"
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(208, 21)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(76, 53)
-        Me.Button6.TabIndex = 34
-        Me.Button6.Text = "FTP Upload"
-        Me.Button6.UseVisualStyleBackColor = True
         '
         'grpbxCVSInsight_ST1B
         '
@@ -824,7 +783,7 @@ Partial Class MainForm
         Me.grpbxCVSInsight_ST1B.Controls.Add(Me.btnTRIGGERCvsInSightDisplay1)
         Me.grpbxCVSInsight_ST1B.Controls.Add(Me.btnDISCONNECTCvsInSightDisplay1)
         Me.grpbxCVSInsight_ST1B.Controls.Add(Me.CvsInSightDisplay1)
-        Me.grpbxCVSInsight_ST1B.Location = New System.Drawing.Point(472, 27)
+        Me.grpbxCVSInsight_ST1B.Location = New System.Drawing.Point(380, 26)
         Me.grpbxCVSInsight_ST1B.Name = "grpbxCVSInsight_ST1B"
         Me.grpbxCVSInsight_ST1B.Size = New System.Drawing.Size(300, 325)
         Me.grpbxCVSInsight_ST1B.TabIndex = 58
@@ -887,7 +846,7 @@ Partial Class MainForm
         Me.grpbxCVSInsight_ST2A.Controls.Add(Me.btnDISCONNECTCvsInSightDisplay2)
         Me.grpbxCVSInsight_ST2A.Controls.Add(Me.CvsInSightDisplay2)
         Me.grpbxCVSInsight_ST2A.Enabled = False
-        Me.grpbxCVSInsight_ST2A.Location = New System.Drawing.Point(778, 27)
+        Me.grpbxCVSInsight_ST2A.Location = New System.Drawing.Point(686, 26)
         Me.grpbxCVSInsight_ST2A.Name = "grpbxCVSInsight_ST2A"
         Me.grpbxCVSInsight_ST2A.Size = New System.Drawing.Size(300, 325)
         Me.grpbxCVSInsight_ST2A.TabIndex = 59
@@ -1138,7 +1097,7 @@ Partial Class MainForm
         Me.grpbxCVSInsight_ST3A.Controls.Add(Me.btnDISCONNECTCvsInSightDisplay3)
         Me.grpbxCVSInsight_ST3A.Controls.Add(Me.CvsInSightDisplay3)
         Me.grpbxCVSInsight_ST3A.Enabled = False
-        Me.grpbxCVSInsight_ST3A.Location = New System.Drawing.Point(1084, 29)
+        Me.grpbxCVSInsight_ST3A.Location = New System.Drawing.Point(992, 26)
         Me.grpbxCVSInsight_ST3A.Name = "grpbxCVSInsight_ST3A"
         Me.grpbxCVSInsight_ST3A.Size = New System.Drawing.Size(300, 325)
         Me.grpbxCVSInsight_ST3A.TabIndex = 60
@@ -1366,9 +1325,9 @@ Partial Class MainForm
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 666)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 551)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1550, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1300, 22)
         Me.StatusStrip1.TabIndex = 62
         Me.StatusStrip1.Tag = "asd"
         Me.StatusStrip1.Text = "StatusStrip1"
@@ -1407,7 +1366,7 @@ Partial Class MainForm
         Me.grpbxINITIALIZE.Controls.Add(Me.Label30)
         Me.grpbxINITIALIZE.Location = New System.Drawing.Point(5, 27)
         Me.grpbxINITIALIZE.Name = "grpbxINITIALIZE"
-        Me.grpbxINITIALIZE.Size = New System.Drawing.Size(282, 488)
+        Me.grpbxINITIALIZE.Size = New System.Drawing.Size(215, 506)
         Me.grpbxINITIALIZE.TabIndex = 63
         Me.grpbxINITIALIZE.TabStop = False
         Me.grpbxINITIALIZE.Text = "Initialize"
@@ -1415,18 +1374,18 @@ Partial Class MainForm
         'btnLoadINI
         '
         Me.btnLoadINI.Enabled = False
-        Me.btnLoadINI.Location = New System.Drawing.Point(212, 61)
+        Me.btnLoadINI.Location = New System.Drawing.Point(118, 31)
         Me.btnLoadINI.Name = "btnLoadINI"
-        Me.btnLoadINI.Size = New System.Drawing.Size(64, 25)
+        Me.btnLoadINI.Size = New System.Drawing.Size(89, 25)
         Me.btnLoadINI.TabIndex = 76
         Me.btnLoadINI.Text = "Load INI"
         Me.btnLoadINI.UseVisualStyleBackColor = True
         '
         'btnStartSelectedPeripherals
         '
-        Me.btnStartSelectedPeripherals.Location = New System.Drawing.Point(10, 390)
+        Me.btnStartSelectedPeripherals.Location = New System.Drawing.Point(7, 393)
         Me.btnStartSelectedPeripherals.Name = "btnStartSelectedPeripherals"
-        Me.btnStartSelectedPeripherals.Size = New System.Drawing.Size(256, 36)
+        Me.btnStartSelectedPeripherals.Size = New System.Drawing.Size(200, 36)
         Me.btnStartSelectedPeripherals.TabIndex = 75
         Me.btnStartSelectedPeripherals.Text = "Start Selected Peripherals"
         Me.btnStartSelectedPeripherals.UseVisualStyleBackColor = True
@@ -1434,7 +1393,7 @@ Partial Class MainForm
         'chkbSymbolBarcodeST3A
         '
         Me.chkbSymbolBarcodeST3A.AutoSize = True
-        Me.chkbSymbolBarcodeST3A.Location = New System.Drawing.Point(19, 343)
+        Me.chkbSymbolBarcodeST3A.Location = New System.Drawing.Point(16, 346)
         Me.chkbSymbolBarcodeST3A.Name = "chkbSymbolBarcodeST3A"
         Me.chkbSymbolBarcodeST3A.Size = New System.Drawing.Size(186, 17)
         Me.chkbSymbolBarcodeST3A.TabIndex = 74
@@ -1444,7 +1403,7 @@ Partial Class MainForm
         'chkbCOGNEXInSightST3A
         '
         Me.chkbCOGNEXInSightST3A.AutoSize = True
-        Me.chkbCOGNEXInSightST3A.Location = New System.Drawing.Point(19, 297)
+        Me.chkbCOGNEXInSightST3A.Location = New System.Drawing.Point(16, 300)
         Me.chkbCOGNEXInSightST3A.Name = "chkbCOGNEXInSightST3A"
         Me.chkbCOGNEXInSightST3A.Size = New System.Drawing.Size(137, 17)
         Me.chkbCOGNEXInSightST3A.TabIndex = 73
@@ -1455,7 +1414,7 @@ Partial Class MainForm
         '
         Me.Label34.AutoSize = True
         Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label34.Location = New System.Drawing.Point(6, 279)
+        Me.Label34.Location = New System.Drawing.Point(3, 282)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(30, 13)
         Me.Label34.TabIndex = 72
@@ -1464,7 +1423,7 @@ Partial Class MainForm
         'chkbScaleRS232
         '
         Me.chkbScaleRS232.AutoSize = True
-        Me.chkbScaleRS232.Location = New System.Drawing.Point(19, 320)
+        Me.chkbScaleRS232.Location = New System.Drawing.Point(16, 323)
         Me.chkbScaleRS232.Name = "chkbScaleRS232"
         Me.chkbScaleRS232.Size = New System.Drawing.Size(96, 17)
         Me.chkbScaleRS232.TabIndex = 71
@@ -1474,17 +1433,17 @@ Partial Class MainForm
         'chkbP2000
         '
         Me.chkbP2000.AutoSize = True
-        Me.chkbP2000.Location = New System.Drawing.Point(20, 208)
+        Me.chkbP2000.Location = New System.Drawing.Point(17, 211)
         Me.chkbP2000.Name = "chkbP2000"
-        Me.chkbP2000.Size = New System.Drawing.Size(197, 17)
+        Me.chkbP2000.Size = New System.Drawing.Size(110, 17)
         Me.chkbP2000.TabIndex = 70
-        Me.chkbP2000.Text = "PLC P2000 / K50 Dome Light ST1B"
+        Me.chkbP2000.Text = "PLC P2000 ST1B"
         Me.chkbP2000.UseVisualStyleBackColor = True
         '
         'chkbCOGNEXInSightST2A
         '
         Me.chkbCOGNEXInSightST2A.AutoSize = True
-        Me.chkbCOGNEXInSightST2A.Location = New System.Drawing.Point(20, 255)
+        Me.chkbCOGNEXInSightST2A.Location = New System.Drawing.Point(17, 258)
         Me.chkbCOGNEXInSightST2A.Name = "chkbCOGNEXInSightST2A"
         Me.chkbCOGNEXInSightST2A.Size = New System.Drawing.Size(137, 17)
         Me.chkbCOGNEXInSightST2A.TabIndex = 69
@@ -1495,7 +1454,7 @@ Partial Class MainForm
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(7, 237)
+        Me.Label33.Location = New System.Drawing.Point(4, 240)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(30, 13)
         Me.Label33.TabIndex = 67
@@ -1504,7 +1463,7 @@ Partial Class MainForm
         'chkbZebra110Xi4_ST3A
         '
         Me.chkbZebra110Xi4_ST3A.AutoSize = True
-        Me.chkbZebra110Xi4_ST3A.Location = New System.Drawing.Point(19, 367)
+        Me.chkbZebra110Xi4_ST3A.Location = New System.Drawing.Point(16, 370)
         Me.chkbZebra110Xi4_ST3A.Name = "chkbZebra110Xi4_ST3A"
         Me.chkbZebra110Xi4_ST3A.Size = New System.Drawing.Size(128, 17)
         Me.chkbZebra110Xi4_ST3A.TabIndex = 66
@@ -1514,7 +1473,7 @@ Partial Class MainForm
         'chkbCOGNEXInSightST1B
         '
         Me.chkbCOGNEXInSightST1B.AutoSize = True
-        Me.chkbCOGNEXInSightST1B.Location = New System.Drawing.Point(20, 185)
+        Me.chkbCOGNEXInSightST1B.Location = New System.Drawing.Point(17, 188)
         Me.chkbCOGNEXInSightST1B.Name = "chkbCOGNEXInSightST1B"
         Me.chkbCOGNEXInSightST1B.Size = New System.Drawing.Size(137, 17)
         Me.chkbCOGNEXInSightST1B.TabIndex = 64
@@ -1524,7 +1483,7 @@ Partial Class MainForm
         'chkbZebra110Xi4_ST1A
         '
         Me.chkbZebra110Xi4_ST1A.AutoSize = True
-        Me.chkbZebra110Xi4_ST1A.Location = New System.Drawing.Point(20, 162)
+        Me.chkbZebra110Xi4_ST1A.Location = New System.Drawing.Point(17, 165)
         Me.chkbZebra110Xi4_ST1A.Name = "chkbZebra110Xi4_ST1A"
         Me.chkbZebra110Xi4_ST1A.Size = New System.Drawing.Size(128, 17)
         Me.chkbZebra110Xi4_ST1A.TabIndex = 63
@@ -1535,7 +1494,7 @@ Partial Class MainForm
         '
         Me.Label32.AutoSize = True
         Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label32.Location = New System.Drawing.Point(7, 96)
+        Me.Label32.Location = New System.Drawing.Point(4, 99)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(30, 13)
         Me.Label32.TabIndex = 62
@@ -1544,7 +1503,7 @@ Partial Class MainForm
         'chkbTEGAMGPIBInterface
         '
         Me.chkbTEGAMGPIBInterface.AutoSize = True
-        Me.chkbTEGAMGPIBInterface.Location = New System.Drawing.Point(20, 139)
+        Me.chkbTEGAMGPIBInterface.Location = New System.Drawing.Point(17, 142)
         Me.chkbTEGAMGPIBInterface.Name = "chkbTEGAMGPIBInterface"
         Me.chkbTEGAMGPIBInterface.Size = New System.Drawing.Size(121, 17)
         Me.chkbTEGAMGPIBInterface.TabIndex = 61
@@ -1555,7 +1514,7 @@ Partial Class MainForm
         '
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(7, 83)
+        Me.Label31.Location = New System.Drawing.Point(4, 86)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(160, 13)
         Me.Label31.TabIndex = 60
@@ -1564,7 +1523,7 @@ Partial Class MainForm
         'chkbSymbolBarcodeST1A
         '
         Me.chkbSymbolBarcodeST1A.AutoSize = True
-        Me.chkbSymbolBarcodeST1A.Location = New System.Drawing.Point(20, 116)
+        Me.chkbSymbolBarcodeST1A.Location = New System.Drawing.Point(17, 119)
         Me.chkbSymbolBarcodeST1A.Name = "chkbSymbolBarcodeST1A"
         Me.chkbSymbolBarcodeST1A.Size = New System.Drawing.Size(186, 17)
         Me.chkbSymbolBarcodeST1A.TabIndex = 59
@@ -1573,9 +1532,9 @@ Partial Class MainForm
         '
         'btnINI_FileSelection
         '
-        Me.btnINI_FileSelection.Location = New System.Drawing.Point(212, 33)
+        Me.btnINI_FileSelection.Location = New System.Drawing.Point(7, 30)
         Me.btnINI_FileSelection.Name = "btnINI_FileSelection"
-        Me.btnINI_FileSelection.Size = New System.Drawing.Size(64, 25)
+        Me.btnINI_FileSelection.Size = New System.Drawing.Size(105, 25)
         Me.btnINI_FileSelection.TabIndex = 57
         Me.btnINI_FileSelection.Text = "Select INI"
         Me.btnINI_FileSelection.UseVisualStyleBackColor = True
@@ -1583,7 +1542,7 @@ Partial Class MainForm
         'txtbINI_FilePath
         '
         Me.txtbINI_FilePath.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbINI_FilePath.Location = New System.Drawing.Point(6, 33)
+        Me.txtbINI_FilePath.Location = New System.Drawing.Point(7, 60)
         Me.txtbINI_FilePath.Multiline = True
         Me.txtbINI_FilePath.Name = "txtbINI_FilePath"
         Me.txtbINI_FilePath.Size = New System.Drawing.Size(200, 25)
@@ -1594,7 +1553,7 @@ Partial Class MainForm
         '
         Me.Label30.AutoSize = True
         Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(5, 17)
+        Me.Label30.Location = New System.Drawing.Point(4, 14)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(98, 13)
         Me.Label30.TabIndex = 56
@@ -1606,6 +1565,7 @@ Partial Class MainForm
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label41)
         Me.GroupBox1.Controls.Add(Me.Label35)
         Me.GroupBox1.Controls.Add(Me.btnOpenBarcodeDeviceST3A)
         Me.GroupBox1.Controls.Add(Me.txtbBCDevice_ReadST3A)
@@ -1615,12 +1575,22 @@ Partial Class MainForm
         Me.GroupBox1.Controls.Add(Me.Button7)
         Me.GroupBox1.Controls.Add(Me.btnBCDeviceEventSubscribeST3A)
         Me.GroupBox1.Controls.Add(Me.Button9)
-        Me.GroupBox1.Location = New System.Drawing.Point(1390, 34)
+        Me.GroupBox1.Location = New System.Drawing.Point(992, 360)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(150, 287)
+        Me.GroupBox1.Size = New System.Drawing.Size(150, 180)
         Me.GroupBox1.TabIndex = 56
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Symbol Barcode ST3A"
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label41.Location = New System.Drawing.Point(4, 90)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(95, 13)
+        Me.Label41.TabIndex = 57
+        Me.Label41.Text = "LEDs and Beep"
         '
         'Label35
         '
@@ -1634,76 +1604,76 @@ Partial Class MainForm
         '
         'btnOpenBarcodeDeviceST3A
         '
-        Me.btnOpenBarcodeDeviceST3A.Location = New System.Drawing.Point(13, 40)
+        Me.btnOpenBarcodeDeviceST3A.Location = New System.Drawing.Point(5, 41)
         Me.btnOpenBarcodeDeviceST3A.Name = "btnOpenBarcodeDeviceST3A"
-        Me.btnOpenBarcodeDeviceST3A.Size = New System.Drawing.Size(125, 25)
+        Me.btnOpenBarcodeDeviceST3A.Size = New System.Drawing.Size(45, 34)
         Me.btnOpenBarcodeDeviceST3A.TabIndex = 15
-        Me.btnOpenBarcodeDeviceST3A.Text = "Open Barcode Device"
+        Me.btnOpenBarcodeDeviceST3A.Text = "Open"
         Me.btnOpenBarcodeDeviceST3A.UseVisualStyleBackColor = True
         '
         'txtbBCDevice_ReadST3A
         '
         Me.txtbBCDevice_ReadST3A.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbBCDevice_ReadST3A.Location = New System.Drawing.Point(13, 224)
+        Me.txtbBCDevice_ReadST3A.Location = New System.Drawing.Point(5, 149)
         Me.txtbBCDevice_ReadST3A.Multiline = True
         Me.txtbBCDevice_ReadST3A.Name = "txtbBCDevice_ReadST3A"
         Me.txtbBCDevice_ReadST3A.ReadOnly = True
-        Me.txtbBCDevice_ReadST3A.Size = New System.Drawing.Size(125, 25)
+        Me.txtbBCDevice_ReadST3A.Size = New System.Drawing.Size(140, 25)
         Me.txtbBCDevice_ReadST3A.TabIndex = 16
         Me.txtbBCDevice_ReadST3A.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'btnBCDevice_LEDGreenONST3A
         '
-        Me.btnBCDevice_LEDGreenONST3A.Location = New System.Drawing.Point(13, 100)
+        Me.btnBCDevice_LEDGreenONST3A.Location = New System.Drawing.Point(4, 110)
         Me.btnBCDevice_LEDGreenONST3A.Name = "btnBCDevice_LEDGreenONST3A"
-        Me.btnBCDevice_LEDGreenONST3A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDevice_LEDGreenONST3A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDevice_LEDGreenONST3A.TabIndex = 18
-        Me.btnBCDevice_LEDGreenONST3A.Text = "LED GREEN ON"
+        Me.btnBCDevice_LEDGreenONST3A.Text = "Green ON"
         Me.btnBCDevice_LEDGreenONST3A.UseVisualStyleBackColor = True
         '
         'btnBCDevice_LEDRedONST3A
         '
-        Me.btnBCDevice_LEDRedONST3A.Location = New System.Drawing.Point(13, 131)
+        Me.btnBCDevice_LEDRedONST3A.Location = New System.Drawing.Point(52, 110)
         Me.btnBCDevice_LEDRedONST3A.Name = "btnBCDevice_LEDRedONST3A"
-        Me.btnBCDevice_LEDRedONST3A.Size = New System.Drawing.Size(123, 25)
+        Me.btnBCDevice_LEDRedONST3A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDevice_LEDRedONST3A.TabIndex = 19
         Me.btnBCDevice_LEDRedONST3A.Text = "LED RED ON"
         Me.btnBCDevice_LEDRedONST3A.UseVisualStyleBackColor = True
         '
         'btnBCDevice_LEDsOFFST3A
         '
-        Me.btnBCDevice_LEDsOFFST3A.Location = New System.Drawing.Point(13, 162)
+        Me.btnBCDevice_LEDsOFFST3A.Location = New System.Drawing.Point(100, 110)
         Me.btnBCDevice_LEDsOFFST3A.Name = "btnBCDevice_LEDsOFFST3A"
-        Me.btnBCDevice_LEDsOFFST3A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDevice_LEDsOFFST3A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDevice_LEDsOFFST3A.TabIndex = 20
         Me.btnBCDevice_LEDsOFFST3A.Text = "LEDs OFF"
         Me.btnBCDevice_LEDsOFFST3A.UseVisualStyleBackColor = True
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(13, 193)
+        Me.Button7.Location = New System.Drawing.Point(99, 87)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(125, 25)
+        Me.Button7.Size = New System.Drawing.Size(45, 19)
         Me.Button7.TabIndex = 21
         Me.Button7.Text = "BEEP"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'btnBCDeviceEventSubscribeST3A
         '
-        Me.btnBCDeviceEventSubscribeST3A.Location = New System.Drawing.Point(13, 70)
+        Me.btnBCDeviceEventSubscribeST3A.Location = New System.Drawing.Point(52, 41)
         Me.btnBCDeviceEventSubscribeST3A.Name = "btnBCDeviceEventSubscribeST3A"
-        Me.btnBCDeviceEventSubscribeST3A.Size = New System.Drawing.Size(125, 25)
+        Me.btnBCDeviceEventSubscribeST3A.Size = New System.Drawing.Size(45, 34)
         Me.btnBCDeviceEventSubscribeST3A.TabIndex = 22
-        Me.btnBCDeviceEventSubscribeST3A.Text = "Event Subscribe"
+        Me.btnBCDeviceEventSubscribeST3A.Text = "Event Subs."
         Me.btnBCDeviceEventSubscribeST3A.UseVisualStyleBackColor = True
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(13, 255)
+        Me.Button9.Location = New System.Drawing.Point(100, 41)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(125, 25)
+        Me.Button9.Size = New System.Drawing.Size(45, 34)
         Me.Button9.TabIndex = 23
-        Me.Button9.Text = "Close Barcode Device"
+        Me.Button9.Text = "Close"
         Me.Button9.UseVisualStyleBackColor = True
         '
         'grpbxMODBUS_TCP
@@ -1748,9 +1718,9 @@ Partial Class MainForm
         Me.grpbxMODBUS_TCP.Controls.Add(Me.Label37)
         Me.grpbxMODBUS_TCP.Controls.Add(Me.Label36)
         Me.grpbxMODBUS_TCP.Controls.Add(Me.txtbMODBUS_TCP_IP_Address)
-        Me.grpbxMODBUS_TCP.Location = New System.Drawing.Point(472, 354)
+        Me.grpbxMODBUS_TCP.Location = New System.Drawing.Point(380, 359)
         Me.grpbxMODBUS_TCP.Name = "grpbxMODBUS_TCP"
-        Me.grpbxMODBUS_TCP.Size = New System.Drawing.Size(150, 300)
+        Me.grpbxMODBUS_TCP.Size = New System.Drawing.Size(300, 180)
         Me.grpbxMODBUS_TCP.TabIndex = 64
         Me.grpbxMODBUS_TCP.TabStop = False
         Me.grpbxMODBUS_TCP.Text = "MODBUS TCP - P2000"
@@ -1759,7 +1729,7 @@ Partial Class MainForm
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(76, 75)
+        Me.Label39.Location = New System.Drawing.Point(8, 122)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(54, 13)
         Me.Label39.TabIndex = 93
@@ -1769,7 +1739,7 @@ Partial Class MainForm
         '
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label38.Location = New System.Drawing.Point(11, 75)
+        Me.Label38.Location = New System.Drawing.Point(8, 54)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(68, 13)
         Me.Label38.TabIndex = 92
@@ -1777,7 +1747,7 @@ Partial Class MainForm
         '
         'btnModbusTCP_Disconnect
         '
-        Me.btnModbusTCP_Disconnect.Location = New System.Drawing.Point(71, 16)
+        Me.btnModbusTCP_Disconnect.Location = New System.Drawing.Point(218, 15)
         Me.btnModbusTCP_Disconnect.Name = "btnModbusTCP_Disconnect"
         Me.btnModbusTCP_Disconnect.Size = New System.Drawing.Size(74, 25)
         Me.btnModbusTCP_Disconnect.TabIndex = 91
@@ -1789,7 +1759,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X15.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X15.AutoSize = True
         Me.chkbModbusTCP_X15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X15.Location = New System.Drawing.Point(43, 232)
+        Me.chkbModbusTCP_X15.Location = New System.Drawing.Point(223, 94)
         Me.chkbModbusTCP_X15.Name = "chkbModbusTCP_X15"
         Me.chkbModbusTCP_X15.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X15.TabIndex = 90
@@ -1801,7 +1771,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X14.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X14.AutoSize = True
         Me.chkbModbusTCP_X14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X14.Location = New System.Drawing.Point(43, 209)
+        Me.chkbModbusTCP_X14.Location = New System.Drawing.Point(187, 94)
         Me.chkbModbusTCP_X14.Name = "chkbModbusTCP_X14"
         Me.chkbModbusTCP_X14.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X14.TabIndex = 89
@@ -1813,7 +1783,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X13.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X13.AutoSize = True
         Me.chkbModbusTCP_X13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X13.Location = New System.Drawing.Point(43, 185)
+        Me.chkbModbusTCP_X13.Location = New System.Drawing.Point(150, 94)
         Me.chkbModbusTCP_X13.Name = "chkbModbusTCP_X13"
         Me.chkbModbusTCP_X13.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X13.TabIndex = 88
@@ -1825,7 +1795,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X12.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X12.AutoSize = True
         Me.chkbModbusTCP_X12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X12.Location = New System.Drawing.Point(43, 161)
+        Me.chkbModbusTCP_X12.Location = New System.Drawing.Point(114, 94)
         Me.chkbModbusTCP_X12.Name = "chkbModbusTCP_X12"
         Me.chkbModbusTCP_X12.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X12.TabIndex = 87
@@ -1837,7 +1807,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X11.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X11.AutoSize = True
         Me.chkbModbusTCP_X11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X11.Location = New System.Drawing.Point(43, 137)
+        Me.chkbModbusTCP_X11.Location = New System.Drawing.Point(78, 94)
         Me.chkbModbusTCP_X11.Name = "chkbModbusTCP_X11"
         Me.chkbModbusTCP_X11.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X11.TabIndex = 86
@@ -1849,7 +1819,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X10.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X10.AutoSize = True
         Me.chkbModbusTCP_X10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X10.Location = New System.Drawing.Point(43, 114)
+        Me.chkbModbusTCP_X10.Location = New System.Drawing.Point(42, 94)
         Me.chkbModbusTCP_X10.Name = "chkbModbusTCP_X10"
         Me.chkbModbusTCP_X10.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X10.TabIndex = 85
@@ -1861,7 +1831,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X09.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X09.AutoSize = True
         Me.chkbModbusTCP_X09.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X09.Location = New System.Drawing.Point(43, 91)
+        Me.chkbModbusTCP_X09.Location = New System.Drawing.Point(6, 94)
         Me.chkbModbusTCP_X09.Name = "chkbModbusTCP_X09"
         Me.chkbModbusTCP_X09.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X09.TabIndex = 84
@@ -1873,7 +1843,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X08.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X08.AutoSize = True
         Me.chkbModbusTCP_X08.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X08.Location = New System.Drawing.Point(6, 256)
+        Me.chkbModbusTCP_X08.Location = New System.Drawing.Point(259, 70)
         Me.chkbModbusTCP_X08.Name = "chkbModbusTCP_X08"
         Me.chkbModbusTCP_X08.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X08.TabIndex = 83
@@ -1885,7 +1855,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X07.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X07.AutoSize = True
         Me.chkbModbusTCP_X07.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X07.Location = New System.Drawing.Point(6, 232)
+        Me.chkbModbusTCP_X07.Location = New System.Drawing.Point(223, 70)
         Me.chkbModbusTCP_X07.Name = "chkbModbusTCP_X07"
         Me.chkbModbusTCP_X07.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X07.TabIndex = 82
@@ -1894,7 +1864,7 @@ Partial Class MainForm
         '
         'btnModbusTCP_Refresh
         '
-        Me.btnModbusTCP_Refresh.Location = New System.Drawing.Point(81, 276)
+        Me.btnModbusTCP_Refresh.Location = New System.Drawing.Point(180, 45)
         Me.btnModbusTCP_Refresh.Name = "btnModbusTCP_Refresh"
         Me.btnModbusTCP_Refresh.Size = New System.Drawing.Size(65, 20)
         Me.btnModbusTCP_Refresh.TabIndex = 42
@@ -1906,7 +1876,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X06.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X06.AutoSize = True
         Me.chkbModbusTCP_X06.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X06.Location = New System.Drawing.Point(6, 209)
+        Me.chkbModbusTCP_X06.Location = New System.Drawing.Point(187, 70)
         Me.chkbModbusTCP_X06.Name = "chkbModbusTCP_X06"
         Me.chkbModbusTCP_X06.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X06.TabIndex = 81
@@ -1918,7 +1888,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X05.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X05.AutoSize = True
         Me.chkbModbusTCP_X05.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X05.Location = New System.Drawing.Point(6, 185)
+        Me.chkbModbusTCP_X05.Location = New System.Drawing.Point(150, 70)
         Me.chkbModbusTCP_X05.Name = "chkbModbusTCP_X05"
         Me.chkbModbusTCP_X05.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X05.TabIndex = 80
@@ -1930,7 +1900,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X04.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X04.AutoSize = True
         Me.chkbModbusTCP_X04.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X04.Location = New System.Drawing.Point(6, 161)
+        Me.chkbModbusTCP_X04.Location = New System.Drawing.Point(114, 70)
         Me.chkbModbusTCP_X04.Name = "chkbModbusTCP_X04"
         Me.chkbModbusTCP_X04.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X04.TabIndex = 79
@@ -1942,7 +1912,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X03.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X03.AutoSize = True
         Me.chkbModbusTCP_X03.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X03.Location = New System.Drawing.Point(6, 137)
+        Me.chkbModbusTCP_X03.Location = New System.Drawing.Point(78, 70)
         Me.chkbModbusTCP_X03.Name = "chkbModbusTCP_X03"
         Me.chkbModbusTCP_X03.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X03.TabIndex = 78
@@ -1954,7 +1924,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X02.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X02.AutoSize = True
         Me.chkbModbusTCP_X02.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X02.Location = New System.Drawing.Point(6, 114)
+        Me.chkbModbusTCP_X02.Location = New System.Drawing.Point(42, 70)
         Me.chkbModbusTCP_X02.Name = "chkbModbusTCP_X02"
         Me.chkbModbusTCP_X02.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X02.TabIndex = 77
@@ -1966,7 +1936,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X01.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X01.AutoSize = True
         Me.chkbModbusTCP_X01.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X01.Location = New System.Drawing.Point(6, 91)
+        Me.chkbModbusTCP_X01.Location = New System.Drawing.Point(6, 70)
         Me.chkbModbusTCP_X01.Name = "chkbModbusTCP_X01"
         Me.chkbModbusTCP_X01.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X01.TabIndex = 76
@@ -1978,7 +1948,7 @@ Partial Class MainForm
         Me.chkbModbusTCP_X16.Appearance = System.Windows.Forms.Appearance.Button
         Me.chkbModbusTCP_X16.AutoSize = True
         Me.chkbModbusTCP_X16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkbModbusTCP_X16.Location = New System.Drawing.Point(43, 256)
+        Me.chkbModbusTCP_X16.Location = New System.Drawing.Point(259, 94)
         Me.chkbModbusTCP_X16.Name = "chkbModbusTCP_X16"
         Me.chkbModbusTCP_X16.Size = New System.Drawing.Size(36, 23)
         Me.chkbModbusTCP_X16.TabIndex = 75
@@ -1990,7 +1960,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y15.AutoSize = True
         Me.lblModbusTCP_Y15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y15.Location = New System.Drawing.Point(115, 233)
+        Me.lblModbusTCP_Y15.Location = New System.Drawing.Point(228, 155)
         Me.lblModbusTCP_Y15.Name = "lblModbusTCP_Y15"
         Me.lblModbusTCP_Y15.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y15.TabIndex = 58
@@ -2001,7 +1971,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y14.AutoSize = True
         Me.lblModbusTCP_Y14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y14.Location = New System.Drawing.Point(115, 210)
+        Me.lblModbusTCP_Y14.Location = New System.Drawing.Point(190, 155)
         Me.lblModbusTCP_Y14.Name = "lblModbusTCP_Y14"
         Me.lblModbusTCP_Y14.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y14.TabIndex = 57
@@ -2012,7 +1982,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y13.AutoSize = True
         Me.lblModbusTCP_Y13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y13.Location = New System.Drawing.Point(115, 186)
+        Me.lblModbusTCP_Y13.Location = New System.Drawing.Point(153, 155)
         Me.lblModbusTCP_Y13.Name = "lblModbusTCP_Y13"
         Me.lblModbusTCP_Y13.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y13.TabIndex = 56
@@ -2023,7 +1993,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y12.AutoSize = True
         Me.lblModbusTCP_Y12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y12.Location = New System.Drawing.Point(115, 162)
+        Me.lblModbusTCP_Y12.Location = New System.Drawing.Point(115, 155)
         Me.lblModbusTCP_Y12.Name = "lblModbusTCP_Y12"
         Me.lblModbusTCP_Y12.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y12.TabIndex = 55
@@ -2034,7 +2004,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y11.AutoSize = True
         Me.lblModbusTCP_Y11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y11.Location = New System.Drawing.Point(115, 138)
+        Me.lblModbusTCP_Y11.Location = New System.Drawing.Point(79, 155)
         Me.lblModbusTCP_Y11.Name = "lblModbusTCP_Y11"
         Me.lblModbusTCP_Y11.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y11.TabIndex = 54
@@ -2045,7 +2015,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y10.AutoSize = True
         Me.lblModbusTCP_Y10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y10.Location = New System.Drawing.Point(115, 115)
+        Me.lblModbusTCP_Y10.Location = New System.Drawing.Point(44, 155)
         Me.lblModbusTCP_Y10.Name = "lblModbusTCP_Y10"
         Me.lblModbusTCP_Y10.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y10.TabIndex = 53
@@ -2056,7 +2026,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y09.AutoSize = True
         Me.lblModbusTCP_Y09.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y09.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y09.Location = New System.Drawing.Point(115, 92)
+        Me.lblModbusTCP_Y09.Location = New System.Drawing.Point(9, 155)
         Me.lblModbusTCP_Y09.MaximumSize = New System.Drawing.Size(40, 22)
         Me.lblModbusTCP_Y09.Name = "lblModbusTCP_Y09"
         Me.lblModbusTCP_Y09.Size = New System.Drawing.Size(30, 17)
@@ -2069,7 +2039,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y08.AutoSize = True
         Me.lblModbusTCP_Y08.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y08.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y08.Location = New System.Drawing.Point(81, 257)
+        Me.lblModbusTCP_Y08.Location = New System.Drawing.Point(264, 138)
         Me.lblModbusTCP_Y08.Name = "lblModbusTCP_Y08"
         Me.lblModbusTCP_Y08.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y08.TabIndex = 51
@@ -2080,7 +2050,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y07.AutoSize = True
         Me.lblModbusTCP_Y07.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y07.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y07.Location = New System.Drawing.Point(81, 233)
+        Me.lblModbusTCP_Y07.Location = New System.Drawing.Point(228, 138)
         Me.lblModbusTCP_Y07.Name = "lblModbusTCP_Y07"
         Me.lblModbusTCP_Y07.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y07.TabIndex = 50
@@ -2091,7 +2061,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y06.AutoSize = True
         Me.lblModbusTCP_Y06.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y06.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y06.Location = New System.Drawing.Point(81, 210)
+        Me.lblModbusTCP_Y06.Location = New System.Drawing.Point(190, 138)
         Me.lblModbusTCP_Y06.Name = "lblModbusTCP_Y06"
         Me.lblModbusTCP_Y06.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y06.TabIndex = 49
@@ -2102,7 +2072,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y05.AutoSize = True
         Me.lblModbusTCP_Y05.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y05.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y05.Location = New System.Drawing.Point(81, 186)
+        Me.lblModbusTCP_Y05.Location = New System.Drawing.Point(153, 138)
         Me.lblModbusTCP_Y05.Name = "lblModbusTCP_Y05"
         Me.lblModbusTCP_Y05.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y05.TabIndex = 48
@@ -2113,7 +2083,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y04.AutoSize = True
         Me.lblModbusTCP_Y04.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y04.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y04.Location = New System.Drawing.Point(81, 162)
+        Me.lblModbusTCP_Y04.Location = New System.Drawing.Point(116, 138)
         Me.lblModbusTCP_Y04.Name = "lblModbusTCP_Y04"
         Me.lblModbusTCP_Y04.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y04.TabIndex = 47
@@ -2124,7 +2094,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y03.AutoSize = True
         Me.lblModbusTCP_Y03.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y03.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y03.Location = New System.Drawing.Point(81, 138)
+        Me.lblModbusTCP_Y03.Location = New System.Drawing.Point(79, 138)
         Me.lblModbusTCP_Y03.Name = "lblModbusTCP_Y03"
         Me.lblModbusTCP_Y03.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y03.TabIndex = 46
@@ -2135,7 +2105,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y02.AutoSize = True
         Me.lblModbusTCP_Y02.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y02.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y02.Location = New System.Drawing.Point(81, 115)
+        Me.lblModbusTCP_Y02.Location = New System.Drawing.Point(44, 138)
         Me.lblModbusTCP_Y02.Name = "lblModbusTCP_Y02"
         Me.lblModbusTCP_Y02.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y02.TabIndex = 45
@@ -2146,7 +2116,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y01.AutoSize = True
         Me.lblModbusTCP_Y01.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y01.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y01.Location = New System.Drawing.Point(81, 92)
+        Me.lblModbusTCP_Y01.Location = New System.Drawing.Point(9, 138)
         Me.lblModbusTCP_Y01.Name = "lblModbusTCP_Y01"
         Me.lblModbusTCP_Y01.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y01.TabIndex = 44
@@ -2157,7 +2127,7 @@ Partial Class MainForm
         Me.lblModbusTCP_Y16.AutoSize = True
         Me.lblModbusTCP_Y16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblModbusTCP_Y16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModbusTCP_Y16.Location = New System.Drawing.Point(115, 257)
+        Me.lblModbusTCP_Y16.Location = New System.Drawing.Point(264, 155)
         Me.lblModbusTCP_Y16.Name = "lblModbusTCP_Y16"
         Me.lblModbusTCP_Y16.Size = New System.Drawing.Size(30, 17)
         Me.lblModbusTCP_Y16.TabIndex = 43
@@ -2165,7 +2135,7 @@ Partial Class MainForm
         '
         'btnModbusTCP_Connect
         '
-        Me.btnModbusTCP_Connect.Location = New System.Drawing.Point(6, 15)
+        Me.btnModbusTCP_Connect.Location = New System.Drawing.Point(153, 15)
         Me.btnModbusTCP_Connect.Name = "btnModbusTCP_Connect"
         Me.btnModbusTCP_Connect.Size = New System.Drawing.Size(61, 25)
         Me.btnModbusTCP_Connect.TabIndex = 41
@@ -2175,7 +2145,7 @@ Partial Class MainForm
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(119, 45)
+        Me.Label37.Location = New System.Drawing.Point(118, 18)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(29, 26)
         Me.Label37.TabIndex = 39
@@ -2184,7 +2154,7 @@ Partial Class MainForm
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(4, 50)
+        Me.Label36.Location = New System.Drawing.Point(3, 23)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(48, 13)
         Me.Label36.TabIndex = 37
@@ -2193,7 +2163,7 @@ Partial Class MainForm
         'txtbMODBUS_TCP_IP_Address
         '
         Me.txtbMODBUS_TCP_IP_Address.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbMODBUS_TCP_IP_Address.Location = New System.Drawing.Point(52, 46)
+        Me.txtbMODBUS_TCP_IP_Address.Location = New System.Drawing.Point(51, 19)
         Me.txtbMODBUS_TCP_IP_Address.Name = "txtbMODBUS_TCP_IP_Address"
         Me.txtbMODBUS_TCP_IP_Address.Size = New System.Drawing.Size(71, 22)
         Me.txtbMODBUS_TCP_IP_Address.TabIndex = 36
@@ -2202,11 +2172,21 @@ Partial Class MainForm
         'timerModbusTCP1
         '
         '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label42.Location = New System.Drawing.Point(3, 107)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(100, 13)
+        Me.Label42.TabIndex = 55
+        Me.Label42.Text = "GPIB Commands"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1550, 688)
+        Me.ClientSize = New System.Drawing.Size(1300, 573)
         Me.Controls.Add(Me.grpbxMODBUS_TCP)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.grpbxINITIALIZE)
@@ -2214,7 +2194,6 @@ Partial Class MainForm
         Me.Controls.Add(Me.grpbxCVSInsight_ST3A)
         Me.Controls.Add(Me.grpbxCVSInsight_ST2A)
         Me.Controls.Add(Me.grpbxCVSInsight_ST1B)
-        Me.Controls.Add(Me.grpbxP2000)
         Me.Controls.Add(Me.grpbxGPIB_TEGAM)
         Me.Controls.Add(Me.grpbxBarcodeScannerST1A)
         Me.Controls.Add(Me.grpbxRS232)
@@ -2232,8 +2211,6 @@ Partial Class MainForm
         Me.grpbxBarcodeScannerST1A.PerformLayout()
         Me.grpbxGPIB_TEGAM.ResumeLayout(False)
         Me.grpbxGPIB_TEGAM.PerformLayout()
-        Me.grpbxP2000.ResumeLayout(False)
-        Me.grpbxP2000.PerformLayout()
         Me.grpbxCVSInsight_ST1B.ResumeLayout(False)
         Me.grpbxCVSInsight_ST1B.PerformLayout()
         Me.grpbxCVSInsight_ST2A.ResumeLayout(False)
@@ -2276,7 +2253,6 @@ Partial Class MainForm
     Friend WithEvents btnBCDevice_BeepST1A As System.Windows.Forms.Button
     Friend WithEvents btnBCDeviceEventSubscribeST1A As System.Windows.Forms.Button
     Friend WithEvents btnCloseBarcodeDeviceST1A As System.Windows.Forms.Button
-    Friend WithEvents btnFTPdownload As System.Windows.Forms.Button
     Friend WithEvents txtbFTPUpJobST1B As System.Windows.Forms.TextBox
     Friend WithEvents btnFTPUpJobST1B As System.Windows.Forms.Button
     Friend WithEvents CvsInSightDisplay1 As Cognex.InSight.Controls.Display.CvsInSightDisplay
@@ -2306,10 +2282,6 @@ Partial Class MainForm
     Friend WithEvents grpbxRS232 As System.Windows.Forms.GroupBox
     Friend WithEvents grpbxBarcodeScannerST1A As System.Windows.Forms.GroupBox
     Friend WithEvents grpbxGPIB_TEGAM As System.Windows.Forms.GroupBox
-    Friend WithEvents grpbxP2000 As System.Windows.Forms.GroupBox
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
-    Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents grpbxCVSInsight_ST1B As System.Windows.Forms.GroupBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
@@ -2440,5 +2412,8 @@ Partial Class MainForm
     Friend WithEvents timerModbusTCP1 As System.Windows.Forms.Timer
     Friend WithEvents Label39 As System.Windows.Forms.Label
     Friend WithEvents Label38 As System.Windows.Forms.Label
+    Friend WithEvents Label40 As System.Windows.Forms.Label
+    Friend WithEvents Label41 As System.Windows.Forms.Label
+    Friend WithEvents Label42 As System.Windows.Forms.Label
 
 End Class
