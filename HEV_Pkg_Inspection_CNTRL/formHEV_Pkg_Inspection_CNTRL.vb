@@ -22,6 +22,21 @@ Public Class MainForm
     Public WithEvents cCoreScanner As CCoreScanner
     ' Public BarcodeScanner_Device2 As _ICoreScannerEvents
 
+    Dim PrinterSelected As Boolean = False
+    Dim DBfilepath As String = ""
+    Dim PRNstring As String = ""
+    Dim PRNfolder As String = ""
+    Dim LogFolder As String = ""
+    Dim ZEBRA_FUSE_IPaddress As String = ""
+    Dim ZEBRA_BOX_IPaddress As String = ""
+
+    Public strdata As New System.Text.StringBuilder(255)
+    Dim INIpath As String
+    Dim LogSetup As Boolean = False
+    Dim LogDateAndTime As String
+    Dim gpibWAIT As Integer
+    Dim ccorescannerWAIT As Integer
+
 
     Const LED_GREEN_ON As String = "43"   ' Green  LED On                            
     Const LED_RED_ON As String = "47"  ' Red  LED On                              
@@ -46,6 +61,16 @@ Public Class MainForm
     Private Declare Auto Function WritePrivateProfileString Lib "Kernel32" (ByVal IpApplication As String, ByVal Ipkeyname As String, ByVal IpString As String, ByVal IpFileName As String) As Integer
 
     Private Declare Auto Function GetPrivateProfileString Lib "Kernel32" (ByVal IpApplicationName As String, ByVal IpKeyName As String, ByVal IpDefault As String, ByVal IPReturnedString As System.Text.StringBuilder, ByVal nsize As Integer, ByVal IpFileName As String) As Integer
+
+    Private Sub WriteINIFile(INIsection As String, INIkey As String, INIvalue As String, INIpath As String)
+        WritePrivateProfileString(INIsection, INIkey, INIvalue, INIpath)
+    End Sub
+
+    Private Function readIniFile(INIsection As String, INIkey As String, INIpath As String) As String
+        GetPrivateProfileString(INIsection, INIkey, "", strdata, 100, INIpath)
+        readIniFile = strdata.ToString
+    End Function
+
 
     Sub GPIB_Open(Optional boardID As Integer = 0, Optional primaryAddress As Integer = 1, Optional secondaryAddress As Integer = 0)
         Try
@@ -117,12 +142,13 @@ Public Class MainForm
         Dim stringReadTextBox As String = ""
         Try
             stringReadTextBox = InsertCommonEscapeSequences(GPIB_Device.EndReadString(result))
+            stringReadTextBox = stringReadTextBox.Replace("\r\n", "")
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
         elementsTransferred = GPIB_Device.LastCount.ToString()
         lastIOStatus = GPIB_Device.LastStatus.ToString()
-        txtbReadGPIB.Text = stringReadTextBox + vbCrLf + txtbReadGPIB.Text
+        txtbReadGPIB.Text = stringReadTextBox '+ vbCrLf + txtbReadGPIB.Text
     End Sub 'OnReadComplete
 
 
@@ -140,68 +166,73 @@ Public Class MainForm
             MessageBox.Show(ex.Message)
         End Try
     End Sub 'terminateButton_Click
-    Private Sub FTP_Download()
-        Dim ftpUserName As String = "admin"
-        Dim ftpPassWD As String = ""
-        Dim ftpFileToDownload As String = "C:\temp\LocalFile.txt"
-        Dim ftpFileSavedAs As String = "ftp://ftp.drivehq.com/vbNETfileUploadTest/TEGAM001_log.ini"
-        'Create Request To Download File'
-        Dim wrDownload As FtpWebRequest = WebRequest.Create(ftpFileSavedAs)
-        'Specify That You Want To Download A File'
-        wrDownload.Method = WebRequestMethods.Ftp.DownloadFile
-        'Specify Username & Password'
-        wrDownload.Credentials = New NetworkCredential(ftpUserName, ftpPassWD)
-        'Response Object'
-        Dim rDownloadResponse As FtpWebResponse = wrDownload.GetResponse()
-        'Incoming File Stream'
-        Dim strFileStream As Stream = rDownloadResponse.GetResponseStream()
-        'Read File Stream Data'
-        Dim srFile As StreamReader = New StreamReader(strFileStream)
-        Dim DownloadedFile As String
-        DownloadedFile = DateAndTime.Now() + vbCrLf + srFile.ReadToEnd()
+    'Private Sub FTP_Download()
+    '    Dim ftpUserName As String = "admin"
+    '    Dim ftpPassWD As String = ""
+    '    Dim ftpFileToDownload As String = "C:\temp\LocalFile.txt"
+    '    Dim ftpFileSavedAs As String = "ftp://ftp.drivehq.com/vbNETfileUploadTest/TEGAM001_log.ini"
+    '    'Create Request To Download File'
+    '    Dim wrDownload As FtpWebRequest = WebRequest.Create(ftpFileSavedAs)
+    '    'Specify That You Want To Download A File'
+    '    wrDownload.Method = WebRequestMethods.Ftp.DownloadFile
+    '    'Specify Username & Password'
+    '    wrDownload.Credentials = New NetworkCredential(ftpUserName, ftpPassWD)
+    '    'Response Object'
+    '    Dim rDownloadResponse As FtpWebResponse = wrDownload.GetResponse()
+    '    'Incoming File Stream'
+    '    Dim strFileStream As Stream = rDownloadResponse.GetResponseStream()
+    '    'Read File Stream Data'
+    '    Dim srFile As StreamReader = New StreamReader(strFileStream)
+    '    Dim DownloadedFile As String
+    '    DownloadedFile = DateAndTime.Now() + vbCrLf + srFile.ReadToEnd()
 
-        Using sw As StreamWriter = File.CreateText(ftpFileToDownload)
-            sw.WriteLine(DownloadedFile)
-        End Using
+    '    Using sw As StreamWriter = File.CreateText(ftpFileToDownload)
+    '        sw.WriteLine(DownloadedFile)
+    '    End Using
 
-        'Show Status Of Download'
-        MessageBox.Show(String.Format("Status Code: {0}", rDownloadResponse.StatusDescription, 1))
-        srFile.Close() 'Close
-        rDownloadResponse.Close()
-    End Sub
-    Sub FTP_Upload(ftpUserName As String, ftpPassWD As String, ftpFileToUpload As String, ftpFileSavedAs As String)
-        Dim wrUpload As FtpWebRequest = DirectCast(WebRequest.Create(ftpFileSavedAs), FtpWebRequest)         'Create Request To Upload File'
-        wrUpload.Credentials = New NetworkCredential(ftpUserName, ftpPassWD)                                 'Specify Username & Password'
-        wrUpload.Method = WebRequestMethods.Ftp.UploadFile                                                  'Start Upload Process'
-        Dim btfile() As Byte = File.ReadAllBytes(ftpFileToUpload)                                           'Locate File And Store It In Byte Array'
-        Dim strFile As Stream = wrUpload.GetRequestStream()                                                 'Get File'
-        strFile.Write(btfile, 0, btfile.Length)                                                             'Upload Each Byte'
-        strFile.Close()                                                                                     'Close'
-        strFile.Dispose()                                                                                  'Free Memory'
-        MessageBox.Show("FTP Upload Complete.")
-    End Sub
-    Private Sub btnOPEN_Click(sender As Object, e As EventArgs) Handles btnOPEN.Click
+    '    'Show Status Of Download'
+    '    MessageBox.Show(String.Format("Status Code: {0}", rDownloadResponse.StatusDescription, 1))
+    '    srFile.Close() 'Close
+    '    rDownloadResponse.Close()
+    'End Sub
+    Private Function FTP_Upload(ftpUserName As String, ftpPassWD As String, ftpFileToUpload As String, ftpFileSavedAs As String) As Boolean
+        Try
+            Dim wrUpload As FtpWebRequest = DirectCast(WebRequest.Create(ftpFileSavedAs), FtpWebRequest)         'Create Request To Upload File'
+            wrUpload.Credentials = New NetworkCredential(ftpUserName, ftpPassWD)                                 'Specify Username & Password'
+            wrUpload.Method = WebRequestMethods.Ftp.UploadFile                                                  'Start Upload Process'
+            Dim btfile() As Byte = File.ReadAllBytes(ftpFileToUpload)                                           'Locate File And Store It In Byte Array'
+            Dim strFile As Stream = wrUpload.GetRequestStream()                                                 'Get File'
+            strFile.Write(btfile, 0, btfile.Length)                                                             'Upload Each Byte'
+            strFile.Close()                                                                                     'Close'
+            strFile.Dispose()                                                                                  'Free Memory'
+            FTP_Upload = True
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+            FTP_Upload = False
+        End Try
+    End Function
+    Private Sub btnOPEN_Click(sender As Object, e As EventArgs) Handles btnGPIB_OPEN.Click
         GPIB_Open(Convert.ToInt32(cbBoardID.Text), Convert.ToInt32(cbPrimaryAddress.Text), Convert.ToInt32(cbSecondaryAddress.Text))
     End Sub
-    Private Sub btnCLOSE_Click(sender As Object, e As EventArgs) Handles btnCLOSE.Click
+    Private Sub btnCLOSE_Click(sender As Object, e As EventArgs) Handles btnGPIB_CLOSE.Click
         GPIB_Close()
     End Sub
 
 
-    Private Sub btnREAD_Click(sender As Object, e As EventArgs) Handles btnREAD.Click
+    Private Sub btnREAD_Click(sender As Object, e As EventArgs) Handles btnGPIB_READ.Click
         GPIB_Read()
     End Sub
 
 
-    Private Sub btnWRITE_Click(sender As Object, e As EventArgs) Handles btnWRITE.Click
+    Private Sub btnWRITE_Click(sender As Object, e As EventArgs) Handles btnGPIB_WRITE.Click
         GPIB_Write(txtbWriteGPIB.Text)
     End Sub
 
-    Private Sub btnTERMINATE_Click(sender As Object, e As EventArgs) Handles btnTERMINATE.Click
+    Private Sub btnTERMINATE_Click(sender As Object, e As EventArgs) Handles btnGPIB_TERMINATE.Click
         GPIB_Terminate()
     End Sub
 
-    Private Sub btnRS232Test_Click(sender As Object, e As EventArgs) Handles btnRS232Test.Click
+    Private Sub btnRS232Test_Click(sender As Object, e As EventArgs) Handles btnRS232Write.Click
         OpenCom()
         SerialPort1.Write("Hello")
         CloseCom()
@@ -237,10 +268,10 @@ Public Class MainForm
         If e.EventType = 1 Then
             Inbuffer = Inbuffer & SerialPort1.ReadExisting
         End If
-        btnRS232Test.Text = Inbuffer
+        btnRS232Write.Text = Inbuffer
     End Sub
 
-    Private Sub btnTRIGGER_Click(sender As Object, e As EventArgs) Handles btnTRIGGER.Click
+    Private Sub btnTRIGGER_Click(sender As Object, e As EventArgs) Handles btnGPIB_TRIGGER.Click
         GPIB_Device.Trigger()
     End Sub
 
@@ -376,16 +407,76 @@ Public Class MainForm
     End Sub
 
     Private Sub btnFTPupload_Click(sender As Object, e As EventArgs) Handles btnFTPUpJobST1B.Click      'Upload the Station 1B .job File as Current_ST1B.job
-        FTP_Upload("admin", "", txtbFTPUpJobST1B.Text, "ftp://" & txtbADDRESSCvsInSightDisplay1.Text & "/Current_ST1B.job")
+        Dim UploadStatus As Boolean
+        UploadStatus = FTP_Upload("admin", "", txtbFTPUpJobST1B.Text, "ftp://" & txtbADDRESSCvsInSightDisplay1.Text & "/Current_ST1B.job")
+        If UploadStatus = True Then
+            btnFTPUpJobST1B.BackColor = Color.LightGreen
+        Else
+            btnFTPUpJobST1B.BackColor = Color.Red
+        End If
+
     End Sub
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'formSTATION_1A.Show()
+        btnLoadINI.PerformClick()
+
+        gpibWAIT = Convert.ToInt16(readIniFile("CONSTANTS", "gpibWAIT", "C:\HEV_INSPECTION_files\localStartConfig.ini"))
+        ccorescannerWAIT = Convert.ToInt16(readIniFile("CONSTANTS", "ccorescannerWAIT", "C:\HEV_INSPECTION_files\localStartConfig.ini"))
+
+        DBfilepath = readIniFile("FILEPATHS", "DBfilepath", "C:\HEV_INSPECTION_files\localStartConfig.ini")
+        PRNfolder = readIniFile("FILEPATHS", "PRNfolder", "C:\HEV_INSPECTION_files\localStartConfig.ini")
+        LogFolder = readIniFile("FILEPATHS", "LogFolder", "C:\HEV_INSPECTION_files\localStartConfig.ini")
+
+        ZEBRA_FUSE_IPaddress = readIniFile("ZEBRA_IP", "txtbZEBRA_FUSE_IPaddress", "C:\HEV_INSPECTION_files\localStartConfig.ini")
+        ZEBRA_BOX_IPaddress = readIniFile("ZEBRA_IP", "txtbZEBRA_BOX_IPaddress", "C:\HEV_INSPECTION_files\localStartConfig.ini")
+
+        '********************************************************************************************************Calculate DATECODE
+        txtbDATECODE.Text = "L" + DateAndTime.Now.Year.ToString.Last + MonthLetter() + DayDigits() + "F"
+
     End Sub
+    Private Function MonthLetter() As String
+        Select Case Date.Now.Month
+            Case 1
+                MonthLetter = "A"
+            Case 2
+                MonthLetter = "B"
+            Case 3
+                MonthLetter = "C"
+            Case 4
+                MonthLetter = "D"
+            Case 5
+                MonthLetter = "E"
+            Case 6
+                MonthLetter = "F"
+            Case 7
+                MonthLetter = "G"
+            Case 8
+                MonthLetter = "H"
+            Case 9
+                MonthLetter = "I"
+            Case 10
+                MonthLetter = "J"
+            Case 11
+                MonthLetter = "K"
+            Case 12
+                MonthLetter = "L"
+            Case Else
+                MonthLetter = "Error"
+        End Select
+    End Function
+    Private Function DayDigits() As String
+        Select Case DateAndTime.Now.Day
+            Case 1 To 9
+                DayDigits = "0" + DateAndTime.Now.Day.ToString
+            Case Else
+                DayDigits = DateAndTime.Now.Day.ToString
+        End Select
+    End Function
 
     Private Sub btnCvsInSightDisplay1_Click(sender As Object, e As EventArgs) Handles btnCONNECTCvsInSightDisplay1.Click
         If Not CvsInSightDisplay1.Connected Then
             CvsInSightDisplay1.Connect(txtbADDRESSCvsInSightDisplay1.Text, txtbUSERCvsInSightDisplay1.Text, txtbPASSWORDCvsInSightDisplay1.Text, False)
+            btnCONNECTCvsInSightDisplay1.BackColor = Color.LightGreen
         End If
         Refresh()
     End Sub
@@ -406,15 +497,18 @@ Public Class MainForm
             System.Threading.Thread.Sleep(500) 'Pauses the application before starting the next line of code.
             WriteDataoTPC1(txtbPASSWORDCvsInSightDisplay1.Text & vbCrLf) 'This line can repeated as many times as you like. You just need to adjust the time the application waits before starting the next line of code.
             System.Threading.Thread.Sleep(500) 'Pauses the application before starting the next line of code.
-            MsgBox("Telnet Connection Succesfull")
+            'MsgBox("Telnet Connection Succesfull")
+            btnOpenTelnetClientST1B.BackColor = Color.LightGreen
         Catch Err As Exception
             MsgBox(Err.ToString)
+            btnOpenTelnetClientST1B.BackColor = Color.Red
         End Try
     End Sub
 
     Private Sub btnCloseTelnetClient_Click(sender As Object, e As EventArgs) Handles btnCloseTelnetClientST1B.Click
         oTCPStream1.Close() 'Closed the NetworkStream
         oTCP1.Close() 'Closed the TcpClient/Socket
+        btnOpenTelnetClientST1B.BackColor = DefaultBackColor
         Refresh()
     End Sub
 
@@ -490,12 +584,18 @@ Public Class MainForm
     End Sub
 
     Private Sub CvsInSightDisplay1_ResultsChanged(sender As Object, e As EventArgs) Handles CvsInSightDisplay1.ResultsChanged
-        formSTATION_1A.PictureBox1.Image = CvsInSightDisplay1.GetBitmap
+        formSTATION_1A.pictboxCVS_InsightST1B.Image = CvsInSightDisplay1.GetBitmap
         'MessageBox.Show("Image Udpdated")
     End Sub
 
     Private Sub btnFTPUpJobST2A_Click(sender As Object, e As EventArgs) Handles btnFTPUpJobST2A.Click 'Upload the Station 2A .job File as Current_ST2A.job
+        Dim UploadStatus As Boolean
         FTP_Upload("admin", "", txtbFTPUpJobST2A.Text, "ftp://" & txtbADDRESSCvsInSightDisplay2.Text & "/Current_ST2A.job")
+        If UploadStatus = True Then
+            btnFTPUpJobST2A.BackColor = Color.LightGreen
+        Else
+            btnFTPUpJobST2A.BackColor = Color.Red
+        End If
     End Sub
 
     Private Sub btnOpenTelnetClientST2A_Click(sender As Object, e As EventArgs) Handles btnOpenTelnetClientST2A.Click
@@ -507,21 +607,25 @@ Public Class MainForm
             System.Threading.Thread.Sleep(500) 'Pauses the application before starting the next line of code.
             WriteDataoTPC2(txtbPASSWORDCvsInSightDisplay2.Text & vbCrLf) 'This line can repeated as many times as you like. You just need to adjust the time the application waits before starting the next line of code.
             System.Threading.Thread.Sleep(500) 'Pauses the application before starting the next line of code.
-            MsgBox("Telnet Connection Succesfull")
+            'MsgBox("Telnet Connection Succesfull")
+            btnOpenTelnetClientST2A.BackColor = Color.LightGreen
         Catch Err As Exception
             MsgBox(Err.ToString)
+            btnOpenTelnetClientST2A.BackColor = Color.Red
         End Try
     End Sub
 
     Private Sub btnCloseTelnetClientST2A_Click(sender As Object, e As EventArgs) Handles btnCloseTelnetClientST2A.Click
         oTCPStream2.Close() 'Closed the NetworkStream
         oTCP2.Close() 'Closed the TcpClient/Socket
+        btnOpenTelnetClientST2A.BackColor = DefaultBackColor
         Refresh()
     End Sub
 
     Private Sub btnCONNECTCvsInSightDisplay2_Click(sender As Object, e As EventArgs) Handles btnCONNECTCvsInSightDisplay2.Click
         If Not CvsInSightDisplay2.Connected Then
             CvsInSightDisplay2.Connect(txtbADDRESSCvsInSightDisplay2.Text, txtbUSERCvsInSightDisplay2.Text, txtbPASSWORDCvsInSightDisplay2.Text, False)
+            btnCONNECTCvsInSightDisplay2.BackColor = Color.LightGreen
         End If
         Refresh()
     End Sub
@@ -554,8 +658,13 @@ Public Class MainForm
     End Sub
 
     Private Sub btnFTPUpJobST3A_Click(sender As Object, e As EventArgs) Handles btnFTPUpJobST3A.Click 'Upload the Station 3A .job File as Current_ST3A.job
+        Dim UploadStatus As Boolean
         FTP_Upload("admin", "", txtbFTPUpJobST3A.Text, "ftp://" & txtbADDRESSCvsInSightDisplay3.Text & "/Current_ST3A.job")
-
+        If UploadStatus = True Then
+            btnFTPUpJobST3A.BackColor = Color.LightGreen
+        Else
+            btnFTPUpJobST3A.BackColor = Color.Red
+        End If
     End Sub
 
     Private Sub btnOpenTelnetClientST3A_Click(sender As Object, e As EventArgs) Handles btnOpenTelnetClientST3A.Click
@@ -567,21 +676,25 @@ Public Class MainForm
             System.Threading.Thread.Sleep(500) 'Pauses the application before starting the next line of code.
             WriteDataoTPC3(txtbPASSWORDCvsInSightDisplay3.Text & vbCrLf) 'This line can repeated as many times as you like. You just need to adjust the time the application waits before starting the next line of code.
             System.Threading.Thread.Sleep(500) 'Pauses the application before starting the next line of code.
-            MsgBox("Telnet Connection Succesfull")
+            'MsgBox("Telnet Connection Succesfull")
+            btnOpenTelnetClientST3A.BackColor = Color.LightGreen
         Catch Err As Exception
             MsgBox(Err.ToString)
+            btnOpenTelnetClientST3A.BackColor = Color.Red
         End Try
     End Sub
 
     Private Sub btnCloseTelnetClientST3A_Click(sender As Object, e As EventArgs) Handles btnCloseTelnetClientST3A.Click
         oTCPStream3.Close() 'Closed the NetworkStream
         oTCP3.Close() 'Closed the TcpClient/Socket
+        btnOpenTelnetClientST3A.BackColor = DefaultBackColor
         Refresh()
     End Sub
 
     Private Sub btnCONNECTCvsInSightDisplay3_Click(sender As Object, e As EventArgs) Handles btnCONNECTCvsInSightDisplay3.Click
         If Not CvsInSightDisplay3.Connected Then
             CvsInSightDisplay3.Connect(txtbADDRESSCvsInSightDisplay3.Text, txtbUSERCvsInSightDisplay3.Text, txtbPASSWORDCvsInSightDisplay3.Text, False)
+            btnCONNECTCvsInSightDisplay3.BackColor = Color.LightGreen
         End If
         Refresh()
 
@@ -627,36 +740,36 @@ Public Class MainForm
 
 
 
-    Private Sub btnINI_FileSelection_Click(sender As Object, e As EventArgs) Handles btnINI_FileSelection.Click
-        Dim myStream As Stream = Nothing
-        Dim openFileDialog1 As New OpenFileDialog()
+    'Private Sub btnINI_FileSelection_Click(sender As Object, e As EventArgs) Handles btnINI_FileSelection.Click
+    '    Dim myStream As Stream = Nothing
+    '    Dim openFileDialog1 As New OpenFileDialog()
 
-        OpenFileDialog1.AddExtension = True
-        openFileDialog1.InitialDirectory = "N:\HEV_PKG"
-        openFileDialog1.Filter = "INI files (*.ini)|*.ini|All files (*.*)|*.*"
-        OpenFileDialog1.FilterIndex = 2
-        OpenFileDialog1.DefaultExt = ".ini"
-        OpenFileDialog1.RestoreDirectory = True
+    '    openFileDialog1.AddExtension = True
+    '    openFileDialog1.InitialDirectory = "N:\HEV_PKG"
+    '    openFileDialog1.Filter = "INI files (*.ini)|*.ini|All files (*.*)|*.*"
+    '    openFileDialog1.FilterIndex = 2
+    '    openFileDialog1.DefaultExt = ".ini"
+    '    openFileDialog1.RestoreDirectory = True
 
-        If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            Try
-                myStream = OpenFileDialog1.OpenFile()
-                If (myStream IsNot Nothing) Then
-                    txtbINI_FilePath.Text = openFileDialog1.FileName
-                    btnLoadINI.Enabled = True
-                End If
-            Catch Ex As Exception
-                MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
-            Finally
-                ' Check this again, since we need to make sure we didn't throw an exception on open.
-                If (myStream IsNot Nothing) Then
-                    myStream.Close()
-                End If
-            End Try
-        End If
+    '    If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+    '        Try
+    '            myStream = openFileDialog1.OpenFile()
+    '            If (myStream IsNot Nothing) Then
+    '                txtbINI_FilePath.Text = openFileDialog1.FileName
+    '                btnLoadINI.Enabled = True
+    '            End If
+    '        Catch Ex As Exception
+    '            MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
+    '        Finally
+    '            ' Check this again, since we need to make sure we didn't throw an exception on open.
+    '            If (myStream IsNot Nothing) Then
+    '                myStream.Close()
+    '            End If
+    '        End Try
+    '    End If
 
 
-    End Sub
+    'End Sub
 
 
 
@@ -711,6 +824,10 @@ Public Class MainForm
             GetPrivateProfileString("CVS_IP", "txtbADDRESSCvsInSightDisplay3", "", strdata, 100, txtbINI_FilePath.Text)
             txtbADDRESSCvsInSightDisplay3.Text = strdata.ToString
 
+            '************************************************************************************************************************ZEBRA_IP
+            txtbZEBRA_FUSE_IPaddress.Text = ZEBRA_FUSE_IPaddress
+            'txtbPRN_File = 
+
             '************************************************************************************************************************CVS_USER_PASSWORD
             GetPrivateProfileString("CVS_USER_PASSWORD", "txtbUSERCvsInSightDisplay1", "", strdata, 100, txtbINI_FilePath.Text)
             txtbUSERCvsInSightDisplay1.Text = strdata.ToString
@@ -734,17 +851,7 @@ Public Class MainForm
     End Sub
 
 
-    Private Sub btnStartSelectedPeripherals_Click(sender As Object, e As EventArgs) Handles btnStartSelectedPeripherals.Click
-        '*******************************************************************************Startup Barcode Scanner on ST1A
-        grpbxBarcodeScannerST1A.Enabled = chkbSymbolBarcodeST1A.Checked
-        btnOpenBarcodeDeviceST1A.PerformClick()
-        btnBCDeviceEventSubscribeST1A.PerformClick()
-        btnBCDevice_LEDRedONST1A.PerformClick()
-        btnBCDevice_BeepST1A.PerformClick()
 
-        grpbxGPIB_TEGAM.Enabled = chkbTEGAMGPIBInterface.Checked
-
-    End Sub
 
     Private Sub btnMODBUS_TCP_Connect_Click(sender As Object, e As EventArgs) Handles btnModbusTCP_Connect.Click
         Dim ComError As Integer = 0
@@ -769,7 +876,7 @@ Public Class MainForm
 
         If modbusTCP1.Connected = True Then
 
-            YCoils = modbusTCP1.ReadDiscreteInputs(0, 16)
+            YCoils = modbusTCP1.ReadCoils(16, 16)
             If YCoils(0) = True Then
                 lblModbusTCP_Y01.BackColor = Color.Green
             Else
@@ -967,6 +1074,306 @@ Public Class MainForm
     End Sub
 
     Private Sub Label37_Click(sender As Object, e As EventArgs) Handles Label37.Click
+
+    End Sub
+
+    Private Sub chkbSymbolBarcodeST3A_CheckedChanged(sender As Object, e As EventArgs) Handles chkbSymbolBarcodeST3A.CheckedChanged
+
+    End Sub
+
+    Private Sub chkbCOGNEXInSightST3A_CheckedChanged(sender As Object, e As EventArgs) Handles chkbCOGNEXInSightST3A.CheckedChanged
+
+    End Sub
+
+    Private Sub Label34_Click(sender As Object, e As EventArgs) Handles Label34.Click
+
+    End Sub
+
+    Private Sub chkbScaleRS232_CheckedChanged(sender As Object, e As EventArgs) Handles chkbScaleRS232.CheckedChanged
+
+    End Sub
+
+    Private Sub chkbCOGNEXInSightST2A_CheckedChanged(sender As Object, e As EventArgs) Handles chkbCOGNEXInSightST2A.CheckedChanged
+
+    End Sub
+
+    Private Sub Label33_Click(sender As Object, e As EventArgs) Handles Label33.Click
+
+    End Sub
+
+    Private Sub chkbZebra110Xi4_ST3A_CheckedChanged(sender As Object, e As EventArgs) Handles chkbZebra110Xi4_ST3A.CheckedChanged
+
+    End Sub
+
+    Private Sub lblModbusTCP_Y01_Click(sender As Object, e As EventArgs) Handles lblModbusTCP_Y01.Click
+
+    End Sub
+
+    Private Sub lblModbusTCP_Y01_BackColorChanged(sender As Object, e As EventArgs) Handles lblModbusTCP_Y01.BackColorChanged
+        If lblModbusTCP_Y01.BackColor = Color.Green Then
+            MessageBox.Show("color changed!")
+        End If
+
+    End Sub
+
+    Private Sub CvsInSightDisplay1_Load(sender As Object, e As EventArgs) Handles CvsInSightDisplay1.Load
+
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        My.Forms.formSTATION_1A.Show()
+        My.Forms.formSTATION_1A.Text = "Holi"
+        My.Forms.formSTATION_1A.pictboxCVS_InsightST1B.Image = CvsInSightDisplay1.GetBitmap
+        'With My.Forms.formSTATION_1A
+        '    Show()
+        '    Text = "Holi"
+        'End With
+    End Sub
+
+    Private Sub tabpgCOGNEX_Insight_Click(sender As Object, e As EventArgs) Handles tabpgCOGNEX_Insight.Click
+
+    End Sub
+
+    Private Sub txtbFTPUpJobST2A_TextChanged(sender As Object, e As EventArgs) Handles txtbFTPUpJobST2A.TextChanged
+
+    End Sub
+
+    Private Sub Label43_Click(sender As Object, e As EventArgs) Handles Label43.Click
+
+    End Sub
+
+    Private Sub grpbxGPIB_TEGAM_Enter(sender As Object, e As EventArgs) Handles grpbxGPIB_TEGAM.Enter
+
+    End Sub
+
+    Private Sub Label50_Click(sender As Object, e As EventArgs) Handles Label50.Click
+
+    End Sub
+
+    Private Sub btnStartSelectedPeripherals_Click(sender As Object, e As EventArgs) Handles btnStartSelectedPeripherals.Click
+        '*******************************************************************************Startup Barcode Scanner on ST1A
+        grpbxBarcodeScannerST1A.Enabled = chkbSymbolBarcodeST1A.Checked
+        btnOpenBarcodeDeviceST1A.PerformClick()
+        btnBCDeviceEventSubscribeST1A.PerformClick()
+        btnBCDevice_LEDRedONST1A.PerformClick()
+        btnBCDevice_BeepST1A.PerformClick()
+
+        grpbxGPIB_TEGAM.Enabled = chkbTEGAMGPIBInterface.Checked
+
+        '*******************************************************************************Select PRN Template
+        Dim myStream As Stream = Nothing
+        Dim PRNfilePath As String = ""
+
+        txtbPRN_TEMPLATE.Text = readIniFile(txtbPART_NUMBER.Text, "LABEL_STYLE", DBfilepath)
+
+        If txtbPRN_TEMPLATE.Text IsNot "" Then
+            PRNfilePath = PRNfolder + txtbPRN_TEMPLATE.Text + ".prn"
+            ToolStripStatusLabel1.Text = PRNfilePath
+            'Convert the PRN file into a local string variable called PRNstring
+            Using sr As StreamReader = File.OpenText(PRNfilePath)
+                Do Until sr.EndOfStream
+                    PRNstring = PRNstring + sr.ReadLine
+                Loop
+            End Using
+        End If
+
+
+
+    End Sub
+
+    Private Sub btnGPIB_INIT_Click(sender As Object, e As EventArgs) Handles btnGPIB_INIT.Click
+        'Main Sequencer
+
+        '*******************************************************************Initialize TEGAM 1750
+        Dim gpibCommand As String = ""
+        'Open GPIB connection
+        btnGPIB_OPEN.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        txtbWriteGPIB.Text = "Q1X" 'Read Revision
+        btnGPIB_WRITE.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        btnGPIB_READ.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        If txtbReadGPIB.Text IsNot "" Then
+            txtbTEGAMstatus.Text = txtbReadGPIB.Text
+            txtbTEGAMstatus.BackColor = Color.LightGreen
+        Else
+            txtbTEGAMstatus.Text = "Check Connection"
+            txtbTEGAMstatus.BackColor = Color.Red
+        End If
+
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        txtbWriteGPIB.Text = "R3X" 'Set Range R3X 20mΩ @ 100mA
+        btnGPIB_WRITE.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        btnGPIB_READ.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        ToolStripStatusLabel1.Text = txtbReadGPIB.Text
+    End Sub
+
+    Private Sub bkgworkGPIB_SLEEP_DoWork(sender As Object, e As DoWorkEventArgs) Handles bkgworkGPIB_SLEEP.DoWork
+        Dim I As Integer
+        bkgworkGPIB_SLEEP.WorkerReportsProgress = True
+        bkgworkGPIB_SLEEP.WorkerSupportsCancellation = True
+        For I = 0 To e.Argument
+            If bkgworkGPIB_SLEEP.CancellationPending = True Then            ' Has the background worker be told to stop?  
+                e.Cancel = True                ' Set Cancel to True 
+                Exit For
+            End If
+            System.Threading.Thread.Sleep(100) ' Sleep for 100 miliSecond  
+            bkgworkGPIB_SLEEP.ReportProgress(I)             ' Report The progress of the Background Worker. 
+        Next
+    End Sub
+
+    Private Sub bkgworkGPIB_SLEEP_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles bkgworkGPIB_SLEEP.ProgressChanged
+        prgsbarSleep1.Value = e.ProgressPercentage
+    End Sub
+
+    Private Sub btnGPIB_MEASURE_Click(sender As Object, e As EventArgs) Handles btnGPIB_MEASURE.Click
+        Dim LOWERlimit As Single
+        Dim UPPERlimit As Single
+        Dim ACTUALresistance As Single
+        Dim TEGAMresistValue As String
+
+        If txtbTEGAMstatus.BackColor = Color.Red Then
+            MessageBox.Show("No GPIB connection made to TEGAM, check your connections.")
+            Exit Sub
+        End If
+
+        txtbWriteGPIB.Text = "GX" 'Get Value
+        btnGPIB_WRITE.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        btnGPIB_TRIGGER.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        btnGPIB_READ.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+        TEGAMresistValue = txtbReadGPIB.Text
+        TEGAMresistValue = TEGAMresistValue.Replace(" mOhm", "")
+        TEGAMresistValue = TEGAMresistValue.Replace(" ", "")
+        txtbRESISTANCE.Text = TEGAMresistValue
+
+        '****************************************************************************************Reset Error Code
+        txtbWriteGPIB.Text = "U1X" 'Get Value
+        btnGPIB_WRITE.PerformClick()
+        '****************************************************************************************Sleep BackgroundWorker START
+        '****************************************************************************************Sleep BackgroundWorker START
+        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
+        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+            Application.DoEvents()              'But keep all of the functions working
+        Loop
+        '****************************************************************************************Sleep BackgroundWorker END
+        '****************************************************************************************Sleep BackgroundWorker END
+
+        ACTUALresistance = Convert.ToSingle(TEGAMresistValue)
+        LOWERlimit = Convert.ToSingle(txtbLOWERresistanceLIMIT.Text)
+        UPPERlimit = Convert.ToSingle(txtbUPPERresistanceLIMIT.Text)
+        If (ACTUALresistance < LOWERlimit Or ACTUALresistance > UPPERlimit) Then
+            'MessageBox.Show("Resistance value out of spec.")
+            txtbRESISTANCE.BackColor = Color.Red
+            Exit Sub
+        End If
+
+        txtbRESISTANCE.BackColor = Color.LightGreen
+    End Sub
+
+    Private Sub btnZEBRA_FUSE_print_Click(sender As Object, e As EventArgs) Handles btnZEBRA_FUSE_print.Click
+        Dim ipAddress As String
+        Dim port As Integer = 9100
+        Dim PRNreplacedValues As String
+
+        PRNreplacedValues = PRNstring
+
+        PRNreplacedValues = PRNreplacedValues.Replace("LXXXXF", txtbDATECODE.Text) 'Datecode
+
+
+        Dim ZPLString As String = PRNreplacedValues
+        ipAddress = ZEBRA_FUSE_IPaddress
+        Try
+            'Open Connection
+            Dim client As New System.Net.Sockets.TcpClient
+            client.Connect(ipAddress, port)
+
+            'Write ZPL String to Connection
+            Dim writer As New System.IO.StreamWriter(client.GetStream())
+            writer.Write(ZPLString)
+            writer.Flush()
+
+            'Close Connection
+            writer.Close()
+            client.Close()
+        Catch ex As Exception
+            'Catch Exception Here
+        End Try
+    End Sub
+
+    Private Sub txtbLOWERresistanceLIMIT_TextChanged(sender As Object, e As EventArgs) Handles txtbLOWERresistanceLIMIT.TextChanged
+
+    End Sub
+
+    Private Sub txtbPART_NUMBER_SELECT_TextChanged(sender As Object, e As EventArgs) Handles txtbPART_NUMBER.TextChanged
 
     End Sub
 End Class

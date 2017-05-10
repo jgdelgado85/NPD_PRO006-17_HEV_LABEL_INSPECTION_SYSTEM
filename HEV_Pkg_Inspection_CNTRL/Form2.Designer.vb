@@ -22,34 +22,34 @@ Partial Class formSTATION_1A
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pictboxCVS_InsightST1B = New System.Windows.Forms.PictureBox()
+        CType(Me.pictboxCVS_InsightST1B, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PictureBox1
+        'pictboxCVS_InsightST1B
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(21, 25)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(400, 300)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
+        Me.pictboxCVS_InsightST1B.Location = New System.Drawing.Point(12, 12)
+        Me.pictboxCVS_InsightST1B.Name = "pictboxCVS_InsightST1B"
+        Me.pictboxCVS_InsightST1B.Size = New System.Drawing.Size(800, 600)
+        Me.pictboxCVS_InsightST1B.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pictboxCVS_InsightST1B.TabIndex = 2
+        Me.pictboxCVS_InsightST1B.TabStop = False
         '
         'formSTATION_1A
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(446, 437)
+        Me.ClientSize = New System.Drawing.Size(842, 623)
         Me.ControlBox = False
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pictboxCVS_InsightST1B)
         Me.Name = "formSTATION_1A"
         Me.Text = "Station 1A: (Electric Test & Label Print/Inspection)"
         Me.TopMost = True
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pictboxCVS_InsightST1B, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents pictboxCVS_InsightST1B As System.Windows.Forms.PictureBox
 End Class
