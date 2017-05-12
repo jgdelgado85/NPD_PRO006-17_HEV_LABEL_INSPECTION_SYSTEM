@@ -33,6 +33,9 @@ Public Class MainForm
     Dim GPIB_Board_ID = ""
     Dim GPIB_Primary_Address = ""
     Dim GPIB_Secondary_Address = ""
+    Dim GPIB_Read_Direction As String = "STATUS"
+    Dim GPIB_TEGAM_READ As String = ""
+
 
     Public strdata As New System.Text.StringBuilder(255)
     Dim INIpath As String
@@ -143,7 +146,15 @@ Public Class MainForm
         End Try
         elementsTransferred = GPIB_Device.LastCount.ToString()
         lastIOStatus = GPIB_Device.LastStatus.ToString()
-        txtbReadGPIB.Text = stringReadTextBox '+ vbCrLf + txtbReadGPIB.Text
+        Select Case GPIB_Read_Direction
+            Case "STATUS"
+                txtbReadGPIB.Text = stringReadTextBox '+ vbCrLf + txtbReadGPIB.Text
+            Case "RESISTANCE_MEASUREMENT"
+                GPIB_TEGAM_READ = stringReadTextBox '+ vbCrLf + txtbReadGPIB.Text
+            Case Else
+                txtbReadGPIB.Text = stringReadTextBox '+ vbCrLf + txtbReadGPIB.Text
+        End Select
+
     End Sub 'OnReadComplete
 
     Private Function ReplaceCommonEscapeSequences(ByVal s As String) As String
@@ -187,9 +198,7 @@ Public Class MainForm
         GPIB_Read()
     End Sub
 
-    Private Sub btnTERMINATE_Click(sender As Object, e As EventArgs) Handles btnGPIB_TERMINATE.Click
-        GPIB_Terminate()
-    End Sub
+
 
     Private Sub btnRS232Test_Click(sender As Object, e As EventArgs) Handles btnRS232Write.Click
         OpenCom()
@@ -236,8 +245,8 @@ Public Class MainForm
 
 
 
-    Private Sub btnSendBarcodeOpcode_Click(sender As Object, e As EventArgs) Handles btnBCDevice_LEDsOFFST1A.Click
-        ScannerOpCodesSend(1, LED_GREEN_OFF)
+    Private Sub btnSendBarcodeOpcode_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub ScannerOpenDevice(deviceID As Integer)
@@ -287,24 +296,6 @@ Public Class MainForm
         inXML = "<inArgs><scannerID>" & deviceID & "</scannerID><cmdArgs><arg-int>1</arg-int><arg-int>1</arg-int></cmdArgs></inArgs>"
         cCoreScanner.ExecCommand(opcode, inXML, outXML, status)
     End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnBCDevice_LEDGreenONST1A.Click
-        ScannerOpCodesSend(1, LED_GREEN_ON)
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnBCDevice_LEDRedONST1A.Click
-        ScannerOpCodesSend(1, LED_RED_ON)
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-        ScannerOpCodesSend(1, LED_RED_OFF)
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles btnBCDevice_BeepST1A.Click
-        ScannerOpCodesSend(1, SCANNER_BEEP)
-    End Sub
-
-
     Private Sub cCoreScanner_BarcodeEvent(eventType As Short, ByRef pscanData As String) Handles cCoreScanner.BarcodeEvent
         Dim Barcode As String
         Dim deviceID As String
@@ -376,7 +367,7 @@ Public Class MainForm
 
     Private Sub btnFTPupload_Click(sender As Object, e As EventArgs) Handles btnFTPUpJobST1B.Click      'Upload the Station 1B .job File as Current_ST1B.job
         Dim UploadStatus As Boolean
-        UploadStatus = FTP_Upload("admin", "", txtbFTPUpJobST1B.Text, "ftp://" & txtbADDRESSCvsInSightDisplay1.Text & "/Current_ST1B.job")
+        UploadStatus = FTP_Upload("admin", "", txtbFTPUpJobST1B.Text, "ftp://" & txtbADDRESSCvsInSightDisplay1.Text & "/Current_ST1.job")
         If UploadStatus = True Then
             btnFTPUpJobST1B.BackColor = Color.LightGreen
         Else
@@ -789,20 +780,15 @@ Public Class MainForm
 
         End Try
     End Sub
-
-
-
-
     Private Sub btnMODBUS_TCP_Connect_Click(sender As Object, e As EventArgs) Handles btnModbusTCP_Connect.Click
         Dim ComError As Integer = 0
         Try
             modbusTCP1.Connect(txtbMODBUS_TCP_IP_Address.Text, 502)
         Catch ex As Exception
-            MessageBox.Show("Communication Error")
+            MessageBox.Show("PLC Communication Error")
         End Try
         timerModbusTCP1.Interval = 100
         timerModbusTCP1.Start()
-
     End Sub
 
     Private Sub txtbMODBUS_TCP_IP_Address_TextChanged(sender As Object, e As EventArgs) Handles txtbMODBUS_TCP_IP_Address.TextChanged
@@ -1092,17 +1078,17 @@ Public Class MainForm
         '*******************************************************************************Startup Barcode Scanner on ST1A
         grpbxBarcodeScannerST1A.Enabled = chkbSymbolBarcodeST1A.Checked
         btnINITbarcodeST1A.PerformClick()
-        btnBCDevice_LEDGreenONST1A.PerformClick()
-        btnBCDevice_BeepST1A.PerformClick()
+        ScannerOpCodesSend(1, LED_GREEN_OFF)
+        ScannerOpCodesSend(1, SCANNER_BEEP)
 
         grpbxGPIB_TEGAM.Enabled = chkbTEGAMGPIBInterface.Checked
 
         '*******************************************************************************Select SHOP PACK
-        BCScannerDirection = "SHOP_PACK"
-        Do While BCScannerDirection = "SHOP_PACK"       'Wait for the Background Worker to finish
-            Application.DoEvents()              'But keep all of the functions working
-        Loop
-        txtbSHOP_PACK.BackColor = DefaultBackColor
+        'BCScannerDirection = "SHOP_PACK"
+        'Do While BCScannerDirection = "SHOP_PACK"       'Wait for the Background Worker to finish
+        '    Application.DoEvents()              'But keep all of the functions working
+        'Loop
+        'txtbSHOP_PACK.BackColor = DefaultBackColor
 
         BCScannerDirection = "PART_NUMBER"
         Do While BCScannerDirection = "PART_NUMBER"       'Wait for the Background Worker to finish
@@ -1171,9 +1157,7 @@ Public Class MainForm
         Loop
         '****************************************************************************************Sleep BackgroundWorker END
         '****************************************************************************************Sleep BackgroundWorker END
-        txtbWriteGPIB.Text = "Q1X" 'Read Revision
-        'btnGPIB_WRITE.PerformClick()
-        GPIB_Write(txtbWriteGPIB.Text)
+        GPIB_Write("Q1X")
         '****************************************************************************************Sleep BackgroundWorker START
         '****************************************************************************************Sleep BackgroundWorker START
         bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
@@ -1183,6 +1167,7 @@ Public Class MainForm
         '****************************************************************************************Sleep BackgroundWorker END
         '****************************************************************************************Sleep BackgroundWorker END
         'btnGPIB_READ.PerformClick()
+        ' GPIB_Device.Clear()
         GPIB_Read()
         '****************************************************************************************Sleep BackgroundWorker START
         '****************************************************************************************Sleep BackgroundWorker START
@@ -1201,8 +1186,7 @@ Public Class MainForm
             txtbTEGAMstatus.BackColor = Color.Red
         End If
 
-        txtbWriteGPIB.Text = "R0X" 'Set Range R3X 20mΩ @ 100mA
-        GPIB_Write(txtbWriteGPIB.Text)
+        GPIB_Write("R0X") 'Set AutoRange R0X
         '****************************************************************************************Sleep BackgroundWorker START
         '****************************************************************************************Sleep BackgroundWorker START
         bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
@@ -1211,7 +1195,6 @@ Public Class MainForm
         Loop
         '****************************************************************************************Sleep BackgroundWorker END
         '****************************************************************************************Sleep BackgroundWorker END
-        'btnGPIB_READ.PerformClick()
         GPIB_Read()
         '****************************************************************************************Sleep BackgroundWorker START
         '****************************************************************************************Sleep BackgroundWorker START
@@ -1230,6 +1213,7 @@ Public Class MainForm
         Loop
         '****************************************************************************************Sleep BackgroundWorker END
         '****************************************************************************************Sleep BackgroundWorker END
+
         btnModbusTCP_Connect.PerformClick()
 
         ToolStripStatusLabel1.Text = txtbReadGPIB.Text
@@ -1266,57 +1250,31 @@ Public Class MainForm
 
 
         btnGPIB_MEASURE.Enabled = False
+        txtbRESISTANCE.Text = ""
+        txtbRESISTANCE.BackColor = DefaultBackColor
 
         If txtbTEGAMstatus.BackColor = Color.Red Then
             MessageBox.Show("No GPIB connection made to TEGAM, check your connections.")
             Exit Sub
         End If
 
-        'txtbWriteGPIB.Text = "G" 'Get Value
-        'btnGPIB_WRITE.PerformClick()
-        '****************************************************************************************Sleep BackgroundWorker START
-        '****************************************************************************************Sleep BackgroundWorker START
-        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
-        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
-            Application.DoEvents()              'But keep all of the functions working
-        Loop
-        '****************************************************************************************Sleep BackgroundWorker END
-        '****************************************************************************************Sleep BackgroundWorker END
         'btnGPIB_TRIGGER.PerformClick()
         GPIB_Device.Trigger()
-        '****************************************************************************************Sleep BackgroundWorker START
-        '****************************************************************************************Sleep BackgroundWorker START
-        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
-        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
-            Application.DoEvents()              'But keep all of the functions working
-        Loop
-        '****************************************************************************************Sleep BackgroundWorker END
-        '****************************************************************************************Sleep BackgroundWorker END
+        GPIB_Read_Direction = "RESISTANCE_MEASUREMENT"
+        GPIB_TEGAM_READ = ""
         GPIB_Read()
         '****************************************************************************************Sleep BackgroundWorker START
         '****************************************************************************************Sleep BackgroundWorker START
-        bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
-        Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
+        Do While GPIB_TEGAM_READ = ""       'Wait for the Background Worker to finish
             Application.DoEvents()              'But keep all of the functions working
         Loop
         '****************************************************************************************Sleep BackgroundWorker END
         '****************************************************************************************Sleep BackgroundWorker END
-        TEGAMresistValue = txtbReadGPIB.Text
+        TEGAMresistValue = GPIB_TEGAM_READ
         TEGAMresistValue = TEGAMresistValue.Replace(" mOhm", "")
         TEGAMresistValue = TEGAMresistValue.Replace(" ", "")
         txtbRESISTANCE.Text = TEGAMresistValue
 
-        ''****************************************************************************************Reset Error Code
-        'txtbWriteGPIB.Text = "U1X" 'Get Value
-        'btnGPIB_WRITE.PerformClick()
-        ''****************************************************************************************Sleep BackgroundWorker START
-        ''****************************************************************************************Sleep BackgroundWorker START
-        'bkgworkGPIB_SLEEP.RunWorkerAsync(gpibWAIT) ' Set the Function to Run
-        'Do While bkgworkGPIB_SLEEP.IsBusy       'Wait for the Background Worker to finish
-        '    Application.DoEvents()              'But keep all of the functions working
-        'Loop
-        ''****************************************************************************************Sleep BackgroundWorker END
-        ''****************************************************************************************Sleep BackgroundWorker END
 
         If TEGAMresistValue = "" Then
             TEGAMresistValue = "9999.9999"
@@ -1449,11 +1407,10 @@ Public Class MainForm
     Private Sub lblModbusTCP_Y02_BackColorChanged(sender As Object, e As EventArgs) Handles lblModbusTCP_Y02.BackColorChanged
         If lblModbusTCP_Y02.BackColor = Color.Green Then
             btnGPIB_MEASURE.PerformClick()
+            btnZEBRA_FUSE_print.PerformClick()
 
         End If
     End Sub
 
-    Private Sub lblModbusTCP_Y02_Click(sender As Object, e As EventArgs) Handles lblModbusTCP_Y02.Click
 
-    End Sub
 End Class

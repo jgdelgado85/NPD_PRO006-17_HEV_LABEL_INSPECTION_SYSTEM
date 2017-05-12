@@ -27,10 +27,6 @@ Partial Class MainForm
         Me.btnRS232Write = New System.Windows.Forms.Button()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.btnINITbarcodeST1A = New System.Windows.Forms.Button()
-        Me.btnBCDevice_LEDsOFFST1A = New System.Windows.Forms.Button()
-        Me.btnBCDevice_LEDGreenONST1A = New System.Windows.Forms.Button()
-        Me.btnBCDevice_LEDRedONST1A = New System.Windows.Forms.Button()
-        Me.btnBCDevice_BeepST1A = New System.Windows.Forms.Button()
         Me.btnCloseBarcodeDeviceST1A = New System.Windows.Forms.Button()
         Me.btnFTPUpJobST1B = New System.Windows.Forms.Button()
         Me.txtbFTPUpJobST1B = New System.Windows.Forms.TextBox()
@@ -61,7 +57,6 @@ Partial Class MainForm
         Me.grpbxRS232 = New System.Windows.Forms.GroupBox()
         Me.btnRS232Read = New System.Windows.Forms.Button()
         Me.grpbxBarcodeScannerST1A = New System.Windows.Forms.GroupBox()
-        Me.Label40 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -233,8 +228,6 @@ Partial Class MainForm
         Me.Label61 = New System.Windows.Forms.Label()
         Me.btnZEBRA_FUSE_print = New System.Windows.Forms.Button()
         Me.timerINPUT_BLINK = New System.Windows.Forms.Timer(Me.components)
-        Me.btnGPIB_TERMINATE = New System.Windows.Forms.Button()
-        Me.txtbWriteGPIB = New System.Windows.Forms.TextBox()
         Me.Label42 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
@@ -284,52 +277,16 @@ Partial Class MainForm
         '
         Me.btnINITbarcodeST1A.Location = New System.Drawing.Point(4, 40)
         Me.btnINITbarcodeST1A.Name = "btnINITbarcodeST1A"
-        Me.btnINITbarcodeST1A.Size = New System.Drawing.Size(140, 34)
+        Me.btnINITbarcodeST1A.Size = New System.Drawing.Size(127, 34)
         Me.btnINITbarcodeST1A.TabIndex = 15
         Me.btnINITbarcodeST1A.Text = "INITIALIZE LS2208"
         Me.btnINITbarcodeST1A.UseVisualStyleBackColor = True
         '
-        'btnBCDevice_LEDsOFFST1A
-        '
-        Me.btnBCDevice_LEDsOFFST1A.Location = New System.Drawing.Point(100, 109)
-        Me.btnBCDevice_LEDsOFFST1A.Name = "btnBCDevice_LEDsOFFST1A"
-        Me.btnBCDevice_LEDsOFFST1A.Size = New System.Drawing.Size(45, 34)
-        Me.btnBCDevice_LEDsOFFST1A.TabIndex = 17
-        Me.btnBCDevice_LEDsOFFST1A.Text = "ALL OFF"
-        Me.btnBCDevice_LEDsOFFST1A.UseVisualStyleBackColor = True
-        '
-        'btnBCDevice_LEDGreenONST1A
-        '
-        Me.btnBCDevice_LEDGreenONST1A.Location = New System.Drawing.Point(4, 109)
-        Me.btnBCDevice_LEDGreenONST1A.Name = "btnBCDevice_LEDGreenONST1A"
-        Me.btnBCDevice_LEDGreenONST1A.Size = New System.Drawing.Size(45, 34)
-        Me.btnBCDevice_LEDGreenONST1A.TabIndex = 18
-        Me.btnBCDevice_LEDGreenONST1A.Text = "Green ON"
-        Me.btnBCDevice_LEDGreenONST1A.UseVisualStyleBackColor = True
-        '
-        'btnBCDevice_LEDRedONST1A
-        '
-        Me.btnBCDevice_LEDRedONST1A.Location = New System.Drawing.Point(52, 109)
-        Me.btnBCDevice_LEDRedONST1A.Name = "btnBCDevice_LEDRedONST1A"
-        Me.btnBCDevice_LEDRedONST1A.Size = New System.Drawing.Size(45, 34)
-        Me.btnBCDevice_LEDRedONST1A.TabIndex = 19
-        Me.btnBCDevice_LEDRedONST1A.Text = "Red ON"
-        Me.btnBCDevice_LEDRedONST1A.UseVisualStyleBackColor = True
-        '
-        'btnBCDevice_BeepST1A
-        '
-        Me.btnBCDevice_BeepST1A.Location = New System.Drawing.Point(100, 84)
-        Me.btnBCDevice_BeepST1A.Name = "btnBCDevice_BeepST1A"
-        Me.btnBCDevice_BeepST1A.Size = New System.Drawing.Size(45, 19)
-        Me.btnBCDevice_BeepST1A.TabIndex = 21
-        Me.btnBCDevice_BeepST1A.Text = "BEEP"
-        Me.btnBCDevice_BeepST1A.UseVisualStyleBackColor = True
-        '
         'btnCloseBarcodeDeviceST1A
         '
-        Me.btnCloseBarcodeDeviceST1A.Location = New System.Drawing.Point(150, 40)
+        Me.btnCloseBarcodeDeviceST1A.Location = New System.Drawing.Point(137, 40)
         Me.btnCloseBarcodeDeviceST1A.Name = "btnCloseBarcodeDeviceST1A"
-        Me.btnCloseBarcodeDeviceST1A.Size = New System.Drawing.Size(45, 34)
+        Me.btnCloseBarcodeDeviceST1A.Size = New System.Drawing.Size(58, 34)
         Me.btnCloseBarcodeDeviceST1A.TabIndex = 23
         Me.btnCloseBarcodeDeviceST1A.Text = "Close"
         Me.btnCloseBarcodeDeviceST1A.UseVisualStyleBackColor = True
@@ -602,39 +559,25 @@ Partial Class MainForm
         '
         'grpbxBarcodeScannerST1A
         '
-        Me.grpbxBarcodeScannerST1A.Controls.Add(Me.Label40)
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.Label29)
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnINITbarcodeST1A)
-        Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnBCDevice_LEDsOFFST1A)
-        Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnBCDevice_LEDGreenONST1A)
-        Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnBCDevice_LEDRedONST1A)
-        Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnBCDevice_BeepST1A)
         Me.grpbxBarcodeScannerST1A.Controls.Add(Me.btnCloseBarcodeDeviceST1A)
         Me.grpbxBarcodeScannerST1A.Enabled = False
-        Me.grpbxBarcodeScannerST1A.Location = New System.Drawing.Point(463, 558)
+        Me.grpbxBarcodeScannerST1A.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grpbxBarcodeScannerST1A.Location = New System.Drawing.Point(473, 26)
         Me.grpbxBarcodeScannerST1A.Name = "grpbxBarcodeScannerST1A"
-        Me.grpbxBarcodeScannerST1A.Size = New System.Drawing.Size(200, 180)
+        Me.grpbxBarcodeScannerST1A.Size = New System.Drawing.Size(200, 84)
         Me.grpbxBarcodeScannerST1A.TabIndex = 55
         Me.grpbxBarcodeScannerST1A.TabStop = False
         Me.grpbxBarcodeScannerST1A.Text = "Symbol Barcode ST1A"
         '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label40.Location = New System.Drawing.Point(3, 87)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(95, 13)
-        Me.Label40.TabIndex = 56
-        Me.Label40.Text = "LEDs and Beep"
-        '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label29.Location = New System.Drawing.Point(3, 18)
+        Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label29.Location = New System.Drawing.Point(3, 19)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(145, 13)
+        Me.Label29.Size = New System.Drawing.Size(175, 16)
         Me.Label29.TabIndex = 55
         Me.Label29.Text = "Initialize Symbol LS2208"
         '
@@ -2531,26 +2474,6 @@ Partial Class MainForm
         Me.timerINPUT_BLINK.Enabled = True
         Me.timerINPUT_BLINK.Interval = 250
         '
-        'btnGPIB_TERMINATE
-        '
-        Me.btnGPIB_TERMINATE.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnGPIB_TERMINATE.Location = New System.Drawing.Point(134, 20)
-        Me.btnGPIB_TERMINATE.Name = "btnGPIB_TERMINATE"
-        Me.btnGPIB_TERMINATE.Size = New System.Drawing.Size(60, 44)
-        Me.btnGPIB_TERMINATE.TabIndex = 12
-        Me.btnGPIB_TERMINATE.Text = "Term. Asynch. "
-        Me.btnGPIB_TERMINATE.UseVisualStyleBackColor = True
-        '
-        'txtbWriteGPIB
-        '
-        Me.txtbWriteGPIB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbWriteGPIB.Location = New System.Drawing.Point(10, 37)
-        Me.txtbWriteGPIB.Name = "txtbWriteGPIB"
-        Me.txtbWriteGPIB.ReadOnly = True
-        Me.txtbWriteGPIB.Size = New System.Drawing.Size(57, 22)
-        Me.txtbWriteGPIB.TabIndex = 10
-        Me.txtbWriteGPIB.Text = "Q1X"
-        '
         'Label42
         '
         Me.Label42.AutoSize = True
@@ -2565,7 +2488,7 @@ Partial Class MainForm
         '
         Me.Label43.AutoSize = True
         Me.Label43.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label43.Location = New System.Drawing.Point(7, 155)
+        Me.Label43.Location = New System.Drawing.Point(7, 134)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(164, 13)
         Me.Label43.TabIndex = 56
@@ -2575,7 +2498,7 @@ Partial Class MainForm
         '
         Me.Label44.AutoSize = True
         Me.Label44.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.Location = New System.Drawing.Point(7, 93)
+        Me.Label44.Location = New System.Drawing.Point(7, 76)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(173, 13)
         Me.Label44.TabIndex = 57
@@ -2585,7 +2508,7 @@ Partial Class MainForm
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label45.Location = New System.Drawing.Point(7, 231)
+        Me.Label45.Location = New System.Drawing.Point(7, 210)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(173, 13)
         Me.Label45.TabIndex = 58
@@ -2594,7 +2517,7 @@ Partial Class MainForm
         'txtbLOWERresistanceLIMIT
         '
         Me.txtbLOWERresistanceLIMIT.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbLOWERresistanceLIMIT.Location = New System.Drawing.Point(10, 247)
+        Me.txtbLOWERresistanceLIMIT.Location = New System.Drawing.Point(10, 227)
         Me.txtbLOWERresistanceLIMIT.Name = "txtbLOWERresistanceLIMIT"
         Me.txtbLOWERresistanceLIMIT.ReadOnly = True
         Me.txtbLOWERresistanceLIMIT.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -2605,7 +2528,7 @@ Partial Class MainForm
         'txtbRESISTANCE
         '
         Me.txtbRESISTANCE.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbRESISTANCE.Location = New System.Drawing.Point(10, 173)
+        Me.txtbRESISTANCE.Location = New System.Drawing.Point(10, 152)
         Me.txtbRESISTANCE.Name = "txtbRESISTANCE"
         Me.txtbRESISTANCE.ReadOnly = True
         Me.txtbRESISTANCE.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -2616,7 +2539,7 @@ Partial Class MainForm
         'txtbUPPERresistanceLIMIT
         '
         Me.txtbUPPERresistanceLIMIT.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbUPPERresistanceLIMIT.Location = New System.Drawing.Point(10, 109)
+        Me.txtbUPPERresistanceLIMIT.Location = New System.Drawing.Point(10, 92)
         Me.txtbUPPERresistanceLIMIT.Name = "txtbUPPERresistanceLIMIT"
         Me.txtbUPPERresistanceLIMIT.ReadOnly = True
         Me.txtbUPPERresistanceLIMIT.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -2627,7 +2550,7 @@ Partial Class MainForm
         'btnGPIB_MEASURE
         '
         Me.btnGPIB_MEASURE.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnGPIB_MEASURE.Location = New System.Drawing.Point(5, 291)
+        Me.btnGPIB_MEASURE.Location = New System.Drawing.Point(5, 271)
         Me.btnGPIB_MEASURE.Name = "btnGPIB_MEASURE"
         Me.btnGPIB_MEASURE.Size = New System.Drawing.Size(190, 40)
         Me.btnGPIB_MEASURE.TabIndex = 62
@@ -2636,7 +2559,7 @@ Partial Class MainForm
         '
         'prgsbarSleep1
         '
-        Me.prgsbarSleep1.Location = New System.Drawing.Point(10, 70)
+        Me.prgsbarSleep1.Location = New System.Drawing.Point(10, 62)
         Me.prgsbarSleep1.Name = "prgsbarSleep1"
         Me.prgsbarSleep1.Size = New System.Drawing.Size(184, 11)
         Me.prgsbarSleep1.TabIndex = 64
@@ -2645,7 +2568,7 @@ Partial Class MainForm
         '
         Me.Label64.AutoSize = True
         Me.Label64.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
-        Me.Label64.Location = New System.Drawing.Point(151, 191)
+        Me.Label64.Location = New System.Drawing.Point(151, 170)
         Me.Label64.Name = "Label64"
         Me.Label64.Size = New System.Drawing.Size(45, 25)
         Me.Label64.TabIndex = 96
@@ -2655,7 +2578,7 @@ Partial Class MainForm
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
-        Me.Label65.Location = New System.Drawing.Point(152, 253)
+        Me.Label65.Location = New System.Drawing.Point(151, 233)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(45, 25)
         Me.Label65.TabIndex = 97
@@ -2665,7 +2588,7 @@ Partial Class MainForm
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
-        Me.Label66.Location = New System.Drawing.Point(151, 115)
+        Me.Label66.Location = New System.Drawing.Point(151, 98)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(45, 25)
         Me.Label66.TabIndex = 98
@@ -2675,7 +2598,7 @@ Partial Class MainForm
         '
         Me.Label67.AutoSize = True
         Me.Label67.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label67.Location = New System.Drawing.Point(6, 342)
+        Me.Label67.Location = New System.Drawing.Point(6, 321)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(99, 16)
         Me.Label67.TabIndex = 99
@@ -2684,10 +2607,10 @@ Partial Class MainForm
         'txtbRESISTANCEtest
         '
         Me.txtbRESISTANCEtest.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbRESISTANCEtest.Location = New System.Drawing.Point(99, 336)
+        Me.txtbRESISTANCEtest.Location = New System.Drawing.Point(99, 315)
         Me.txtbRESISTANCEtest.Name = "txtbRESISTANCEtest"
         Me.txtbRESISTANCEtest.ReadOnly = True
-        Me.txtbRESISTANCEtest.Size = New System.Drawing.Size(97, 31)
+        Me.txtbRESISTANCEtest.Size = New System.Drawing.Size(95, 31)
         Me.txtbRESISTANCEtest.TabIndex = 84
         Me.txtbRESISTANCEtest.Text = "NONE"
         '
@@ -2708,12 +2631,10 @@ Partial Class MainForm
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.Label43)
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.Label42)
         Me.grpbxGPIB_TEGAM.Controls.Add(Me.txtbReadGPIB)
-        Me.grpbxGPIB_TEGAM.Controls.Add(Me.txtbWriteGPIB)
-        Me.grpbxGPIB_TEGAM.Controls.Add(Me.btnGPIB_TERMINATE)
         Me.grpbxGPIB_TEGAM.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpbxGPIB_TEGAM.Location = New System.Drawing.Point(463, 29)
+        Me.grpbxGPIB_TEGAM.Location = New System.Drawing.Point(463, 297)
         Me.grpbxGPIB_TEGAM.Name = "grpbxGPIB_TEGAM"
-        Me.grpbxGPIB_TEGAM.Size = New System.Drawing.Size(200, 380)
+        Me.grpbxGPIB_TEGAM.Size = New System.Drawing.Size(200, 359)
         Me.grpbxGPIB_TEGAM.TabIndex = 56
         Me.grpbxGPIB_TEGAM.TabStop = False
         Me.grpbxGPIB_TEGAM.Text = "TEGAM 1750 ST1A"
@@ -2721,10 +2642,10 @@ Partial Class MainForm
         'txtbReadGPIB
         '
         Me.txtbReadGPIB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbReadGPIB.Location = New System.Drawing.Point(73, 37)
+        Me.txtbReadGPIB.Location = New System.Drawing.Point(10, 37)
         Me.txtbReadGPIB.Name = "txtbReadGPIB"
         Me.txtbReadGPIB.ReadOnly = True
-        Me.txtbReadGPIB.Size = New System.Drawing.Size(57, 22)
+        Me.txtbReadGPIB.Size = New System.Drawing.Size(184, 22)
         Me.txtbReadGPIB.TabIndex = 9
         '
         'MainForm
@@ -2784,10 +2705,6 @@ Partial Class MainForm
     Friend WithEvents btnRS232Write As System.Windows.Forms.Button
     Friend WithEvents SerialPort1 As System.IO.Ports.SerialPort
     Friend WithEvents btnINITbarcodeST1A As System.Windows.Forms.Button
-    Friend WithEvents btnBCDevice_LEDsOFFST1A As System.Windows.Forms.Button
-    Friend WithEvents btnBCDevice_LEDGreenONST1A As System.Windows.Forms.Button
-    Friend WithEvents btnBCDevice_LEDRedONST1A As System.Windows.Forms.Button
-    Friend WithEvents btnBCDevice_BeepST1A As System.Windows.Forms.Button
     Friend WithEvents btnCloseBarcodeDeviceST1A As System.Windows.Forms.Button
     Friend WithEvents txtbFTPUpJobST1B As System.Windows.Forms.TextBox
     Friend WithEvents btnFTPUpJobST1B As System.Windows.Forms.Button
@@ -2941,7 +2858,6 @@ Partial Class MainForm
     Friend WithEvents timerModbusTCP1 As System.Windows.Forms.Timer
     Friend WithEvents Label39 As System.Windows.Forms.Label
     Friend WithEvents Label38 As System.Windows.Forms.Label
-    Friend WithEvents Label40 As System.Windows.Forms.Label
     Friend WithEvents Label41 As System.Windows.Forms.Label
     Friend WithEvents btnRS232Read As Button
     Friend WithEvents Button1 As Button
@@ -2991,8 +2907,6 @@ Partial Class MainForm
     Friend WithEvents txtbZEBRA_FUSE_IPaddress As TextBox
     Friend WithEvents Label61 As Label
     Friend WithEvents timerINPUT_BLINK As Timer
-    Friend WithEvents btnGPIB_TERMINATE As Button
-    Friend WithEvents txtbWriteGPIB As TextBox
     Friend WithEvents Label42 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents Label44 As Label
